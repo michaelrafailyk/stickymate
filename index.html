@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>StickyMate</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="stickymate.js" async defer></script>
+
+</head>
+<body>
+
+	<div class="dark">
+		<div class="overflow dark" data-sticky='{"start": "0", "end": "100vh"}'>
+			<div class="fullwindow" data-animation='{"opacity": {"0": "1", "50vh": ".1", "100vh": ".05"}, "transform": {"0": "scale(1)", "100vh": "scale(7.5)"}}'>
+				<p>Hello!</p>
+			</div>
+		</div>
+		<div class="fullwindow" data-animation='{"opacity": {"-45vh": "0", "0": "1"}}'>
+			<p>I'm StickyMate</p>
+		</div>
+	</div>
+
+	<hr>
+
+	<div class="fullwindow overflow light" data-sticky='{"start": "0", "end": "150vh"}'>
+		<div class="fullwindow absolute dark" data-animation='{"transform": {"50vh": "scale(1) translate(0, 0)", "75vh": "scale(.75) translate(0, 0)", "125vh": "scale(.75) translate(-125%, 0)"}}'>
+			<div class="fullwindow absolute" data-animation='{"opacity": {"0": "1", "25vh": "0"}}'>
+				<p>And I made these elements special</p>
+			</div>
+			<div class="fullwindow absolute" data-animation='{"opacity": {"25vh": "0", "50vh": "1"}}'>
+				<p>With just two attributes</p>
+			</div>
+		</div>
+		<div class="fullwindow absolute dark" data-animation='{"transform": {"68vh": "scale(.75) translate(125%, 0)", "118vh": "scale(.75) translate(0, 0)", "150vh": "scale(1) translate(0, 0)"}}'>
+			<p>Directly in the markup</p>
+		</div>
+	</div>
+
+	<hr>
+
+	<div class="fullwindow overflow dark">
+		<p>
+			<span data-animation='{
+				"opacity": {"-100vh": "0", "-90vh": "1", "-75vh": "1", "-65vh": ".15", "-50vh": "1"},
+				"transform": {
+					"-100vh": "translate(-500%, 0) scale(1)",
+					"-75vh": "translate(0, 0) scale(1)",
+					"-65vh": "translate(0, 0) scale(3)",
+					"-50vh": "translate(0, 0) scale(1)",
+					"-45vh": "translate(0, 0) scale(1)",
+					"-35vh": "translate(-100%, 0) scale(1)",
+					"-20vh": "translate(0, 0) scale(1)"
+				}
+			}'>Bang!</span>
+			<span data-animation='{
+				"transform": {
+					"-75vh": "translate(0, 0)",
+					"-65vh": "translate(100%, 0)",
+					"-50vh": "translate(0, 0)",
+					"-45vh": "translate(0, 0)",
+					"-35vh": "translate(-100%, 0)",
+					"-20vh": "translate(0, 0)"
+				}
+			}'>Bang!</span>
+			<span data-animation='{
+				"opacity": {"-70vh": "0", "-60vh": "1", "-45vh": "1", "-35vh": ".15", "-20vh": "1"},
+				"transform": {
+					"-70vh": "translate(500%, 0) scale(1)",
+					"-45vh": "translate(0, 0) scale(1)",
+					"-35vh": "translate(0, 0) scale(3)",
+					"-20vh": "translate(0, 0) scale(1)"
+				}
+			}'>Bang!</span>
+		</p>
+	</div>
+
+	<hr>
+
+	<div class="fullwindow perspective light" data-sticky='{"start": "0", "end": "200vh"}'>
+		<div class="fullwindow absolute dark" data-animation='{
+			"opacity": {"140vh": "1", "150vh": "0"},
+			"transform": {
+				"50vh": "translate3d(0, 0, 0) rotateX(0)",
+				"75vh": "translate3d(0, 0, -50vh) rotateX(0)",
+				"100vh": "translate3d(0, 0, -100vh) rotateX(70deg)",
+				"125vh": "translate3d(0, 30vh, -100vh) rotateX(70deg)"
+			}}'>
+			<div class="fullwindow absolute" data-animation='{"opacity": {"0": "1", "25vh": "0"}}'>
+				<p>Use your imagination</p>
+			</div>
+			<div class="fullwindow absolute" data-animation='{"opacity": {"25vh": "0", "50vh": "1"}}'>
+				<p>To implement great ideas that will present your content</p>
+			</div>
+		</div>
+		<div class="fullwindow absolute dark" data-animation='{
+			"opacity": {"125vh": "0", "150vh": "1"},
+			"transform": {
+				"125vh": "translate3d(0, -15vh, -100vh) rotateX(70deg)",
+				"150vh": "translate3d(0, 30vh, -100vh) rotateX(70deg)",
+				"175vh": "translate3d(0, 0, -50vh) rotateX(0)",
+				"200vh": "translate3d(0, 0, 0) rotateX(0)"
+			}}'>
+			<p>In the most spectacular way</p>
+		</div>
+	</div>
+
+	<hr>
+
+	<div class="fullwindow dark">
+		<p>Animate easily!</p>
+	</div>
+
+</body>
+</html>

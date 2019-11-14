@@ -1,0 +1,54 @@
+html, body {
+	margin: 0;
+}
+hr {
+	margin: 0;
+	border: none;
+	border-top: 1px solid #222;
+}
+span {
+	display: inline-block;
+}
+
+
+.fullwindow {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100vh;
+}
+.overflow {
+	overflow: hidden;
+}
+.absolute {
+	position: absolute !important;
+}
+.perspective {
+	-webkit-perspective: 150vh;
+	perspective: 150vh;
+}
+.dark {
+	background: black;
+	color: white;
+}
+.light {
+	background: white;
+	color: black;
+}
+
+p {
+	position: absolute;
+	margin: 0 15%;
+	width: 70%;
+	top: 50%;
+	-webkit-transform: translate(0, -50%);
+	transform: translate(0, -50%);
+	font: 2rem sans-serif;
+	text-align: center;
+}
+
+@media (max-width:719px) {
+	p {
+		font-size: 1rem;
+	}
+}

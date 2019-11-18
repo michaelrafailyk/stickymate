@@ -8,7 +8,7 @@
 
 */
 
-(function() {
+{
 
 	// sticky section
 	let sticky = {
@@ -24,7 +24,7 @@
 		},
 		wrap: function() {
 			if (sticky.checkSupport()) {
-				if (!sticky.elements) {
+				if (!sticky.elements && document.querySelectorAll('[' + sticky.attribute + ']').length) {
 					sticky.elements = document.querySelectorAll('[' + sticky.attribute + ']');
 					for (let i = 0; i < sticky.elements.length; i++) {
 						// make sure that we wrap sticky only once
@@ -102,7 +102,7 @@
 			after: 'after'
 		},
 		get: function() {
-			if (!animation.elements) {
+			if (!animation.elements && document.querySelectorAll('[' + animation.attribute + ']').length) {
 				animation.elements = document.querySelectorAll('[' + animation.attribute + ']');
 			}
 			animation.list = [];
@@ -350,14 +350,14 @@
 
 
 
-	// initialization
+	// get data and set keys and params
 	let initialization = function () {
 		sticky.wrap();
 		sticky.get();
 		animation.get();
 		animation.detect();
 	};
-	// get data and set keys and params
+	initialization();
 	document.addEventListener('DOMContentLoaded', initialization);
 	window.addEventListener('load', initialization);
 	window.addEventListener('resize', function() {
@@ -368,4 +368,4 @@
 
 
 
-}());
+}

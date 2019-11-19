@@ -17,13 +17,13 @@
 		container: 'sticky-container',
 		property: 'position: -webkit-sticky; position: sticky;',
 		// check if browser support position: sticky
-		checkSupport: function() {
+		supported: function() {
 			let element = document.createElement('div');
 			element.style.cssText = sticky.property;
 			return element.style.position.match('sticky') ? true : false;
 		},
 		wrap: function() {
-			if (sticky.checkSupport()) {
+			if (sticky.supported()) {
 				if (!sticky.elements && document.querySelectorAll('[' + sticky.attribute + ']').length) {
 					sticky.elements = document.querySelectorAll('[' + sticky.attribute + ']');
 					for (let i = 0; i < sticky.elements.length; i++) {
@@ -49,7 +49,7 @@
 			}
 		},
 		get: function() {
-			if (sticky.checkSupport()) {
+			if (sticky.supported()) {
 				element:
 				for (let i = 0; i < sticky.elements.length; i++) {
 					// get params about start/end of sticky position
@@ -350,6 +350,7 @@
 
 
 
+	// initialization
 	// get data and set keys and params
 	let initialization = function () {
 		sticky.wrap();
@@ -357,9 +358,12 @@
 		animation.get();
 		animation.detect();
 	};
-	initialization();
-	document.addEventListener('DOMContentLoaded', initialization);
-	window.addEventListener('load', initialization);
+	// checking state after async and/or defer
+	if (document.readyState == 'loading' || 'interactive') {
+		document.addEventListener('readystatechange', initialization);
+	} else {
+		initialization();
+	}
 	window.addEventListener('resize', function() {
 		resizeEnd(initialization);
 	});

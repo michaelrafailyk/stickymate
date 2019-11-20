@@ -124,6 +124,7 @@ StickyMate это инструмент, который поможет веб-р�
     - Chrome on Android: 56
     - Firefox on Android: 59
     - Safari on iOS: 10
+
 - Для `data-animation`
     - Chrome: 49
     - Edge: 16
@@ -146,6 +147,5 @@ StickyMate это инструмент, который поможет веб-р�
 
 ## Автор и лицензия
 
-- **Michael Rafaylik** - [rafaylik](https://github.com/rafaylik) на GitHub.
-
+**Michael Rafaylik** - [rafaylik](https://github.com/rafaylik) на GitHub.
 Проект разрабатывается под MIT License - детали смотрите в [LICENSE.md](./LICENSE).

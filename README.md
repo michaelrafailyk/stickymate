@@ -124,6 +124,7 @@ ECMAScript 6 required
     - Chrome on Android: 56
     - Firefox on Android: 59
     - Safari on iOS: 10
+
 - For `data-animation`
     - Chrome: 49
     - Edge: 16
@@ -146,6 +147,5 @@ ECMAScript 6 required
 
 ## Author and license
 
-- **Michael Rafaylik** - [rafaylik](https://github.com/rafaylik) on GitHub.
-
+**Michael Rafaylik** - [rafaylik](https://github.com/rafaylik) on GitHub.
 Project is licensed under the MIT License - see the [LICENSE.md](./LICENSE) file for details.

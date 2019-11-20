@@ -112,27 +112,28 @@ In this case, you can manipulate an element while it is stuck on the screen.
 
 ## Browser compatibility
 
+ECMAScript 6 required
+
 - For `data-sticky`
     - Chrome: 56
     - Edge: 16
     - Firefox: 48
     - Internet Explorer: No
     - Opera: 43
-    - Safari: 8
+    - Safari: 10
     - Chrome on Android: 56
     - Firefox on Android: 59
-    - Safari on iOS: 8
-
+    - Safari on iOS: 10
 - For `data-animation`
-    - Chrome: 24
+    - Chrome: 49
     - Edge: 16
-    - Firefox: 26
+    - Firefox: 44
     - Internet Explorer: 11
-    - Opera: 15
-    - Safari: 7
-    - Chrome on Android: Yes
-    - Firefox on Android: 26
-    - Safari on iOS: 7
+    - Opera: 17
+    - Safari: 10
+    - Chrome on Android: 49
+    - Firefox on Android: 44
+    - Safari on iOS: 10
 
 ## Known minor issues
 

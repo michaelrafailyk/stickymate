@@ -352,7 +352,7 @@
 
 	// initialization
 	// get data and set keys and params
-	let initialization = function () {
+	let initialization = function() {
 		sticky.wrap();
 		sticky.get();
 		animation.get();

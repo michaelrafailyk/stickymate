@@ -56,7 +56,7 @@
 					let params = sticky.elements[i].getAttribute(sticky.attribute);
 					try {
 						params = JSON.parse(params);
-					} catch {continue element}
+					} catch (e) {continue element}
 					if (!params.start || !params.end) continue element;
 					params.verify = [];
 					// break the params string to separate the numbers inside
@@ -120,7 +120,7 @@
 				params = params.replace(beforeFirstKey, ': {"[').replace(beforeNextKeys, '", "[').replace(afterEachKey, ']": "');
 				try {
 					params = JSON.parse(params);
-				} catch {continue element}
+				} catch (e) {continue element}
 				// create an array and fill it with verified params
 				let paramsVerified = [];
 				for (let property in params) {
@@ -359,7 +359,7 @@
 		animation.detect();
 	};
 	// checking state after async and/or defer
-	if (document.readyState == 'loading' || 'interactive') {
+	if (document.readyState == 'loading' || document.readyState == 'interactive') {
 		document.addEventListener('readystatechange', initialization);
 	} else {
 		initialization();

@@ -147,6 +147,4 @@ ECMAScript 6 required
 
 ## Author and license
 
-**Michael Rafaylik** - [rafaylik](https://github.com/rafaylik) on GitHub.
-
-Project is licensed under the MIT License - see the [LICENSE.md](./LICENSE) file for details.
+**Michael Rafaylik** - [rafaylik](https://github.com/rafaylik) on GitHub. Project is licensed under the MIT License - see the [LICENSE.md](./LICENSE) file for details.

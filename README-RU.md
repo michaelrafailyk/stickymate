@@ -147,6 +147,4 @@ StickyMate это инструмент, который поможет веб-р�
 
 ## Автор и лицензия
 
-**Michael Rafaylik** - [rafaylik](https://github.com/rafaylik) на GitHub.
-
-Проект разрабатывается под MIT License - детали смотрите в [LICENSE.md](./LICENSE).
+**Michael Rafaylik** - [rafaylik](https://github.com/rafaylik) на GitHub. Проект разрабатывается под MIT License - детали смотрите в [LICENSE.md](./LICENSE).

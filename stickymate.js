@@ -1,6 +1,6 @@
 /*
 
-	StickyMate v1.0.2
+	StickyMate v1.0.3
 	Licensed under the MIT License
 	Copyright 2019 Michael Rafaylik
 	rafaylik@icloud.com
@@ -63,12 +63,10 @@
 					params.verify.push(params.start.split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e}));
 					params.verify.push(params.end.split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e}));
 					if (!params.verify[0][0].match(/\d/) || !params.verify[1][0].match(/\d/)) continue element;
-					// verify params for missing values like units type or parentheses etc
-					validation.autocomplete(params.verify);
 					// convert any type of keys to the pixels
-					let start = convert.unitsToPixels(params.verify[0][0], params.verify[0][1]);
+					let start = convert.unitsToPixels(+params.verify[0][0], params.verify[0][1]);
 					start = -start + 0;
-					let end = convert.unitsToPixels(params.verify[1][0], params.verify[1][1]);
+					let end = convert.unitsToPixels(+params.verify[1][0], params.verify[1][1]);
 					// compose the min-height for the parent container
 					// but get correct offset until the element is not a sticky
 					let originalPosition = sticky.elements[i].style.position;
@@ -146,12 +144,11 @@
 						list[property]['values'].push(values);
 					}
 					// verify params for missing values like units type or parentheses etc
-					validation.autocomplete(list[property]['position']);
+					// validation.autocomplete(list[property]['position']);
 					validation.autocomplete(list[property]['values']);
 					for (let j = 0; j < list[property]['position'].length; j++) {
-						let numbers = list[property]['position'][j][0];
-						let units = list[property]['position'][j][1];
-						// convert any type of keys to the pixels
+						let numbers = +list[property]['position'][j][0];
+						let units = list[property]['position'][j][1]
 						list[property]['position'][j] = convert.unitsToPixels(numbers, units) + top;
 					}
 					paramsVerified.push(list);

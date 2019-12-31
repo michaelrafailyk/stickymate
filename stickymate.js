@@ -58,15 +58,14 @@
 						params = JSON.parse(params);
 					} catch (e) {continue element}
 					if (!params['from'] || !params['duration']) continue element;
-					params.verify = [];
 					// break the params string to separate the numbers inside
-					params.verify.push(params['from'].split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e}));
-					params.verify.push(params['duration'].split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e}));
-					if (!params.verify[0][0].match(/\d/) || !params.verify[1][0].match(/\d/)) continue element;
+					params['from'] = params['from'].split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e});
+					params['duration'] = params['duration'].split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e});
+					if (!params['from'][0].match(/\d/) || !params['duration'][0].match(/\d/)) continue element;
 					// convert any type of keys to the pixels
-					let start = convert.unitsToPixels(+params.verify[0][0], params.verify[0][1]);
+					let start = convert.unitsToPixels(+params['from'][0], params['from'][1]);
 					start = -start + 0;
-					let end = convert.unitsToPixels(+params.verify[1][0], params.verify[1][1]);
+					let end = convert.unitsToPixels(+params['duration'][0], params['duration'][1]);
 					// compose the min-height for the parent container
 					// but get correct offset until the element is not a sticky
 					let originalPosition = sticky.elements[i].style.position;

@@ -8,22 +8,7 @@ StickyMate is a tool that designed to help web developers easily create animatio
 
 - [Download](https://github.com/rafaylik/stickymate/archive/master.zip) and unzip, or just `$ git clone https://github.com/rafaylik/stickymate.git`
 - Place a `stickymate.js` in the directory of your application.
-- Include it at the `head` section or at the end of the `body` tag.
-``` html
-<!DOCTYPE html>
-<html>
-    <head>
-
-        <script src="stickymate.js" async defer></script>
-
-    </head>
-    <body>
-
-        // elements
-
-    </body>
-</html>
-```
+- Include `stickymate.js` at the `head` section or at the end of the `body` tag.
 
 ## Usage
 
@@ -64,6 +49,10 @@ StickyMate is a tool that designed to help web developers easily create animatio
 ```
 - Inside one animated CSS property, use the same units for setting position keys.
 - Units of position keys should be `px` (pixels), `vh` (viewport height) or `vw` (viewport width).
+- You can set `from` position for `data-sticky` attribute like a `top / center / bottom`.
+``` html
+<div data-sticky='{"from": "center", "duration": "100vh"}'></div>
+```
 - Units of `data-animation` CSS property values are set the same as in CSS.
 - `0` position can be set without units.
 - `-100vh` = top of element reached the bottom of the viewport.

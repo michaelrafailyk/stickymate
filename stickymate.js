@@ -1,6 +1,6 @@
 /*
 
-	StickyMate v1.0.4
+	StickyMate v1.0.5
 	Licensed under the MIT License
 	Copyright 2019 Michael Rafaylik
 	rafaylik@icloud.com
@@ -61,7 +61,21 @@
 					// break the params string to separate the numbers inside
 					params['from'] = params['from'].split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e});
 					params['duration'] = params['duration'].split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e});
-					if (!params['from'][0].match(/\d/) || !params['duration'][0].match(/\d/)) continue element;
+					if (!params['from'][0].match(/\d|top|center|bottom/)) continue element;
+					if (!params['duration'][0].match(/\d/)) continue element;
+					if (params['from'] == 'top') {
+						params['from'][0] = 0;
+					}
+					else if (params['from'] == 'center') {
+						let vh = -document.documentElement.clientHeight / 2;
+						let eh = -sticky.elements[i].offsetHeight / 2;
+						params['from'][0] = vh - eh;
+					}
+					else if (params['from'] == 'bottom') {
+						let vh = -document.documentElement.clientHeight;
+						let eh = -sticky.elements[i].offsetHeight;
+						params['from'][0] = vh - eh;
+					}
 					// convert any type of keys to the pixels
 					let start = convert.unitsToPixels(+params['from'][0], params['from'][1]);
 					start = -start + 0;

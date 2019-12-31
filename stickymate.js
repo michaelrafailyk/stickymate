@@ -1,6 +1,6 @@
 /*
 
-	StickyMate v1.0.3
+	StickyMate v1.0.4
 	Licensed under the MIT License
 	Copyright 2019 Michael Rafaylik
 	rafaylik@icloud.com
@@ -52,16 +52,16 @@
 			if (sticky.supported()) {
 				element:
 				for (let i = 0; i < sticky.elements.length; i++) {
-					// get params about start/end of sticky position
+					// get params about from/duration of sticky position
 					let params = sticky.elements[i].getAttribute(sticky.attribute);
 					try {
 						params = JSON.parse(params);
 					} catch (e) {continue element}
-					if (!params.start || !params.end) continue element;
+					if (!params['from'] || !params['duration']) continue element;
 					params.verify = [];
 					// break the params string to separate the numbers inside
-					params.verify.push(params.start.split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e}));
-					params.verify.push(params.end.split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e}));
+					params.verify.push(params['from'].split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e}));
+					params.verify.push(params['duration'].split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e}));
 					if (!params.verify[0][0].match(/\d/) || !params.verify[1][0].match(/\d/)) continue element;
 					// convert any type of keys to the pixels
 					let start = convert.unitsToPixels(+params.verify[0][0], params.verify[0][1]);

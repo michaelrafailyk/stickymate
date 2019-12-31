@@ -35,8 +35,8 @@ StickyMate is a tool that designed to help web developers easily create animatio
 ``` html
 <div
     data-sticky='{
-        "start": "position",        // position from the top of the viewport when the element sticks to the screen
-        "end": "position"           // position when the element will no longer sticky, extends the min-height of the parent container
+        "from": "position",        // position from the top of the viewport when the element sticks to the screen
+        "duration": "position"     // position when the element will no longer sticky, extends the min-height of the parent container
     }'
     data-animation='{
         "CSS property": {
@@ -48,8 +48,8 @@ StickyMate is a tool that designed to help web developers easily create animatio
     }'
 ></div>
 ```
-- The `data-sticky` attribute can contain only two params, namely `start` and `end`.
-- If there is no need to extends the min-height of the parent container, you can specify `0` for the `end` value.
+- The `data-sticky` attribute can contain only two params, namely `from` and `duration`.
+- If there is no need to extends the min-height of the parent container, you can specify `0` for the `duration` value.
 - The `data-animation` attribute can contain one or more animated CSS properties, separated by commas.
 - Every `data-animation` CSS property can contain two or more position keys, separated by commas.
 - Use JSON format with double quotes inside for every key and value.
@@ -82,9 +82,9 @@ StickyMate is a tool that designed to help web developers easily create animatio
 
 - Sticky element.
 ``` html
-<div data-sticky='{"start": "0", "end": "200vh"}'></div>
+<div data-sticky='{"from": "0", "duration": "200vh"}'></div>
 ```
-When top of the element reaches the top of the viewport (`"start": "0"`), it will stick on the screen until you scroll up two viewport height (`"end": "200vh"`) from that moment.
+When top of the element reaches the top of the viewport (`"from": "0"`), it will stick on the screen until you scroll up two viewport height (`"duration": "200vh"`) from that moment.
 
 - Animated element with one CSS property and two position keys.
 ``` html
@@ -106,13 +106,13 @@ Each CSS property has its own positioning keys and values.
 
 - Sticky and animated element (two attributes at once).
 ``` html
-<div data-sticky='{"start": "0", "end": "100vh"}' data-animation='{"opacity": {"0": "1", "100vh": "0"}}'></div>
+<div data-sticky='{"from": "0", "duration": "100vh"}' data-animation='{"opacity": {"0": "1", "100vh": "0"}}'></div>
 ```
 In this case, you can manipulate an element while it is stuck on the screen.
 
 ## Browser compatibility
 
-ECMAScript 6 required
+All modern browsers that support ECMAScript 6 (2015)
 
 - For `data-sticky`
     - Chrome: 56

@@ -376,7 +376,7 @@
 	}
 	window.addEventListener('resize', function() {
 		resizeEnd(initialization);
-	});
+	}, { passive: true } );
 	// detect animation keys
 	window.addEventListener('scroll', animation.detect, { passive: true} );
 

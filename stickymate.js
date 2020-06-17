@@ -378,7 +378,7 @@
 		resizeEnd(initialization);
 	});
 	// detect animation keys
-	window.addEventListener('scroll', animation.detect);
+	window.addEventListener('scroll', animation.detect, { passive: true} );
 
 
 

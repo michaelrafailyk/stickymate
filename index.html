@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>StickyMate</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="stickymate.js" async defer></script>
+
+</head>
+<body>
+
+	<div class="demo">
+
+		<div class="dark">
+			<div class="overflow dark" data-sticky="from: top, duration: 100vh">
+				<div class="fullwindow" data-animation="opacity: {0: 1, 50vh: .1, 100vh: .05}, transform: {0: scale(1), 100vh: scale(7.5)}">
+					<p>Hello!</p>
+				</div>
+			</div>
+			<div class="fullwindow" data-animation="opacity: {-45vh: 0, 0: 1}">
+				<p>I'm StickyMate</p>
+			</div>
+		</div>
+
+		<hr>
+
+		<div>
+			<div class="fullwindow overflow light" data-sticky="from: top, duration: 150vh">
+				<div class="fullwindow absolute dark" data-animation="transform: {50vh: scale(1) translate(0, 0), 75vh: scale(.75) translate(0, 0), 125vh: scale(.75) translate(-125%, 0)}">
+					<div class="fullwindow absolute" data-animation="opacity: {0: 1, 25vh: 0}">
+						<p>And I made these elements special</p>
+					</div>
+					<div class="fullwindow absolute" data-animation="opacity: {25vh: 0, 50vh: 1}">
+						<p>With just two attributes</p>
+					</div>
+				</div>
+				<div class="fullwindow absolute dark" data-animation="transform: {68vh: scale(.75) translate(125%, 0), 118vh: scale(.75) translate(0, 0), 150vh: scale(1) translate(0, 0)}">
+					<p>Directly in the markup</p>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+
+		<div class="fullwindow overflow dark">
+			<p>
+				<span data-animation="
+					opacity: {-100vh: 0, -90vh: 1, -75vh: 1, -65vh: .15, -50vh: 1},
+					transform: {
+						-100vh: translate(-500%, 0) scale(1),
+						-75vh: translate(0, 0) scale(1),
+						-65vh: translate(0, 0) scale(3),
+						-50vh: translate(0, 0) scale(1),
+						-45vh: translate(0, 0) scale(1),
+						-35vh: translate(-100%, 0) scale(1),
+						-20vh: translate(0, 0) scale(1)
+					}
+				">Bang!</span>
+				<span data-animation="
+					transform: {
+						-75vh: translate(0, 0),
+						-65vh: translate(100%, 0),
+						-50vh: translate(0, 0),
+						-45vh: translate(0, 0),
+						-35vh: translate(-100%, 0),
+						-20vh: translate(0, 0)
+					}
+				">Bang!</span>
+				<span data-animation="
+					opacity: {-70vh: 0, -60vh: 1, -45vh: 1, -35vh: .15, -20vh: 1},
+					transform: {
+						-70vh: translate(500%, 0) scale(1),
+						-45vh: translate(0, 0) scale(1),
+						-35vh: translate(0, 0) scale(3),
+						-20vh: translate(0, 0) scale(1)
+					}
+				">Bang!</span>
+			</p>
+		</div>
+
+		<hr>
+
+		<div>
+			<div class="fullwindow perspective light" data-sticky="from: top, duration: 200vh">
+				<div class="fullwindow absolute dark" data-animation="
+					opacity: {140vh: 1, 150vh: 0},
+					transform: {
+						50vh: translate3d(0, 0, 0) rotateX(0),
+						75vh: translate3d(0, 0, -50vh) rotateX(0),
+						100vh: translate3d(0, 0, -100vh) rotateX(70deg),
+						125vh: translate3d(0, 30vh, -100vh) rotateX(70deg)
+					}
+				">
+					<div class="fullwindow absolute" data-animation="opacity: {0: 1, 25vh: 0}">
+						<p>Use your imagination</p>
+					</div>
+					<div class="fullwindow absolute" data-animation="opacity: {25vh: 0, 50vh: 1}">
+						<p>To implement great ideas that will present your content</p>
+					</div>
+				</div>
+				<div class="fullwindow absolute dark" data-animation="
+					opacity: {125vh: 0, 150vh: 1},
+					transform: {
+						125vh: translate3d(0, -15vh, -100vh) rotateX(70deg),
+						150vh: translate3d(0, 30vh, -100vh) rotateX(70deg),
+						175vh: translate3d(0, 0, -50vh) rotateX(0),
+						200vh: translate3d(0, 0, 0) rotateX(0)
+					}
+				">
+					<p>In the most spectacular way</p>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+
+		<div class="fullwindow dark">
+			<p>Animate easily!</p>
+		</div>
+
+	</div>
+
+	<div class="markup">
+
+		<div>
+			<div class="fullwindow markup-section" data-sticky="from: 0, duration: 100vh" data-classes="
+				1vh: {add: hl0 hl1 hl2},
+				50vh: {add: hl3, remove: hl2},
+				55vh: {add: hl4},
+				100vh: {remove: hl0 hl1 hl3 hl4}
+			">
+				<div class="markup-attribute">
+					<div><c1>data-sticky</c1>="from: <c3 class="bl0">0</c3>, duration: <c3 class="bl0">100vh</c3>"</div>
+				</div>
+				<div class="markup-attribute">
+					<div><pre>·   </pre><c1>data-animation</c1>="</div>
+					<div><pre>        </pre><c2>opacity</c2>: {</div>
+					<div><pre>            </pre><c3 class="bl2">0</c3>:<pre>     </pre><c4>1</c4>,</div>
+					<div><pre>            </pre><c3 class="bl2 bl3">50vh</c3>:<pre>  </pre><c4>.1</c4>,</div>
+					<div><pre>            </pre><c3 class="bl3">100vh</c3>: <c4>.05</c4></div>
+					<div><pre>        </pre>},</div>
+					<div><pre>        </pre><c2>transform</c2>: {</div>
+					<div><pre>            </pre><c3 class="bl1">0</c3>:<pre>     </pre><c4>scale(1)</c4>,</div>
+					<div><pre>            </pre><c3 class="bl1">100vh</c3>: <c4>scale(7.5)</c4></div>
+					<div><pre>        </pre>}</div>
+					<div><pre>    </pre>"</div>
+				</div>
+				<div class="markup-attribute">
+					<div><c1>data-animation</c1>="<c2>opacity</c2>: {<c3 class="bl4">-45vh</c3>: <c4>0</c4>, <c3 class="bl4">0</c3>: <c4>1</c4>}"</div>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+
+		<div>
+			<div class="fullwindow markup-section" data-sticky="from: 0, duration: 150vh" data-classes="
+				0vh: {add: hl0 hl1},
+				25vh: {add: hl2, remove: hl1},
+				50vh: {add: hl3, remove: hl2},
+				68vh: {add: hl5},
+				75vh: {add: hl4, remove: hl3},
+				118vh: {add: hl6, remove: hl5},
+				125vh: {remove: hl4},
+				150vh: {remove: hl0 hl6}
+			">
+				<div class="markup-attribute">
+					<div><c1>data-sticky</c1>="from: <c3 class="bl0">0</c3>, duration: <c3 class="bl0">150vh</c3>"</div>
+				</div>
+				<div class="markup-attribute">
+					<div><pre>·   </pre><c1>data-animation</c1>="</div>
+					<div><pre>        </pre><c2>transform</c2>: {</div>
+					<div><pre>            </pre><c3 class="bl3">50vh</c3>:<pre>  </pre><c4>scale(1) translate(0, 0)</c4>,</div>
+					<div><pre>            </pre><c3 class="bl3 bl4">75vh</c3>:<pre>  </pre><c4>scale(.75) translate(0, 0)</c4>,</div>
+					<div><pre>            </pre><c3 class="bl4">125vh</c3>: <c4>scale(.75) translate(-125%, 0)</c4></div>
+					<div><pre>        </pre>}</div>
+					<div><pre>    </pre>"</div>
+				</div>
+				<div class="markup-attribute">
+					<div><pre>·   ·   </pre><c1>data-animation</c1>="<c2>opacity</c2>: {<c3 class="bl1">0</c3>: <c4>1</c4>, <c3 class="bl1">25vh</c3>: <c4>0</c4>}"</div>
+					<div><pre>·   ·   </pre><c1>data-animation</c1>="<c2>opacity</c2>: {<c3 class="bl2">25vh</c3>: <c4>0</c4>, <c3 class="bl2">50vh</c3>: <c4>1</c4>}"</div>
+				</div>
+				<div class="markup-attribute">
+					<div><pre>·   </pre><c1>data-animation</c1>="</div>
+					<div><pre>        </pre><c2>transform</c2>: {</div>
+					<div><pre>            </pre><c3 class="bl5">68vh</c3>:<pre>  </pre><c4>scale(.75) translate(125%, 0)</c4>,</div>
+					<div><pre>            </pre><c3 class="bl5 bl6">118vh</c3>: <c4>scale(.75) translate(0, 0)</c4>,</div>
+					<div><pre>            </pre><c3 class="bl6">150vh</c3>: <c4>scale(1) translate(0, 0)</c4></div>
+					<div><pre>        </pre>}</div>
+					<div><pre>    </pre>"</div>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+
+		<div class="fullwindow">
+			<div class="markup-section" data-sticky="from: 0, duration: 0" data-classes="
+				-50vh: {add: hl1 hl5},
+				-40vh: {add: hl2, remove: hl1},
+				-25vh: {add: hl3 hl6, remove: hl2 hl5},
+				-20vh: {add: hl11 hl13},
+				-15vh: {add: hl4 hl7, remove: hl3 hl6},
+				-10vh: {add: hl12, remove: hl11},
+				0vh: {add: hl8, remove: hl4 hl7},
+				5vh: {add: hl9, remove: hl8 hl12 hl13},
+				15vh: {add: hl10, remove: hl9},
+				30vh: {remove: hl10}
+			">
+				<div class="markup-attribute">
+					<div><c1>data-animation</c1>="</div>
+					<div><pre>    </pre><c2>opacity</c2>: {<c3 class="bl1">-100vh</c3>: <c4>0</c4>, <c3 class="bl1 bl2">-90vh</c3>: <c4>1</c4>, <c3 class="bl2 bl3">-75vh</c3>: <c4>1</c4>, <c3 class="bl3 bl4">-65vh</c3>: <c4>.15</c4>, <c3 class="bl4">-50vh</c3>: <c4>1</c4>},</div>
+					<div><pre>    </pre><c2>transform</c2>: {</div>
+					<div><pre>        </pre><c3 class="bl5">-100vh</c3>: <c4>translate(-500%, 0) scale(1)</c4>,</div>
+					<div><pre>        </pre><c3 class="bl5 bl6">-75vh</c3>: <c4>translate(0, 0) scale(1)</c4>,</div>
+					<div><pre>        </pre><c3 class="bl6 bl7">-65vh</c3>: <c4>translate(0, 0) scale(3)</c4>,</div>
+					<div><pre>        </pre><c3 class="bl7 bl8">-50vh</c3>: <c4>translate(0, 0) scale(1)</c4>,</div>
+					<div><pre>        </pre><c3 class="bl8 bl9">-45vh</c3>: <c4>translate(0, 0) scale(1)</c4>,</div>
+					<div><pre>        </pre><c3 class="bl9 bl10">-35vh</c3>: <c4>translate(-100%, 0) scale(1)</c4>,</div>
+					<div><pre>        </pre><c3 class="bl10">-20vh</c3>: <c4>translate(0, 0) scale(1)</c4></div>
+					<div><pre>    </pre>}</div>
+					<div>"</div>
+				</div>
+				<div class="markup-attribute">
+					<div><c1>data-animation</c1>="</div>
+					<div><pre>    </pre><c2>transform</c2>: {</div>
+					<div><pre>        </pre><c3 class="bl6">-75vh</c3>: <c4>translate(0, 0)</c4>,</div>
+					<div><pre>        </pre><c3 class="bl6 bl7">-65vh</c3>: <c4>translate(100%, 0)</c4>,</div>
+					<div><pre>        </pre><c3 class="bl7 bl8">-50vh</c3>: <c4>translate(0, 0)</c4>,</div>
+					<div><pre>        </pre><c3 class="bl8 bl9">-45vh</c3>: <c4>translate(0, 0)</c4>,</div>
+					<div><pre>        </pre><c3 class="bl9 bl10">-35vh</c3>: <c4>translate(-100%, 0)</c4>,</div>
+					<div><pre>        </pre><c3 class="bl10">-20vh</c3>: <c4>translate(0, 0)</c4></div>
+					<div><pre>    </pre>}</div>
+					<div>"</div>
+				</div>
+				<div class="markup-attribute">
+					<div><c1>data-animation</c1>="</div>
+					<div><pre>    </pre><c2>opacity</c2>: {<c3 class="bl11">-70vh</c3>: <c4>0</c4>, <c3 class="bl11 bl12">-60vh</c3>: <c4>1</c4>, <c3 class="bl9 bl12">-45vh</c3>: <c4>1</c4>, <c3 class="bl9 bl10">-35vh</c3>: <c4>.15</c4>, <c3 class="bl10">-20vh</c3>: <c4>1</c4>},</div>
+					<div><pre>    </pre><c2>transform</c2>: {</div>
+					<div><pre>        </pre><c3 class="bl13">-70vh</c3>: <c4>translate(500%, 0) scale(1)</c4>,</div>
+					<div><pre>        </pre><c3 class="bl9 bl13">-45vh</c3>: <c4>translate(0, 0) scale(1)</c4>,</div>
+					<div><pre>        </pre><c3 class="bl9 bl10">-35vh</c3>: <c4>translate(0, 0) scale(3)</c4>,</div>
+					<div><pre>        </pre><c3 class="bl10">-20vh</c3>: <c4>translate(0, 0) scale(1)</c4></div>
+					<div><pre>    </pre>}</div>
+					<div>"</div>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+
+		<div>
+			<div class="fullwindow markup-section" data-sticky="from: 0, duration: 200vh" data-classes="
+				0vh: {add: hl0 hl1},
+				25vh: {add: hl2, remove: hl1},
+				50vh: {add: hl3, remove: hl2},
+				75vh: {add: hl4, remove: hl3},
+				100vh: {add: hl5, remove: hl4},
+				125vh: {add: hl7, remove: hl5},
+				140vh: {add: hl6},
+				150vh: {add: hl8, remove: hl6 hl7},
+				175vh: {add: hl9, remove: hl8},
+				200vh: {remove: hl0 hl9}
+			">
+				<div class="markup-attribute">
+					<div><c1>data-sticky</c1>="from: <c3 class="bl0">0</c3>, duration: <c3 class="bl0">200vh</c3>"</div>
+				</div>
+				<div class="markup-attribute">
+					<div><pre>·   </pre><c1>data-animation</c1>="</div>
+					<div><pre>        </pre><c2>opacity</c2>: {<c3 class="bl6">140vh</c3>: <c4>1</c4>, <c3 class="bl6">150vh</c3>: <c4>0</c4>},</div>
+					<div><pre>        </pre><c2>transform</c2>: {</div>
+					<div><pre>            </pre><c3 class="bl3">50vh</c3>:<pre>  </pre><c4>translate3d(0, 0, 0) rotateX(0)</c4>,</div>
+					<div><pre>            </pre><c3 class="bl3 bl4">75vh</c3>:<pre>  </pre><c4>translate3d(0, 0, -50vh) rotateX(0)</c4>,</div>
+					<div><pre>            </pre><c3 class="bl4 bl5">100vh</c3>: <c4>translate3d(0, 0, -100vh) rotateX(70deg)</c4>,</div>
+					<div><pre>            </pre><c3 class="bl5">125vh</c3>: <c4>translate3d(0, 30vh, -100vh) rotateX(70deg)</c4></div>
+					<div><pre>        </pre>}</div>
+					<div><pre>    "</pre></div>
+				</div>
+				<div class="markup-attribute">
+					<div><pre>·   ·   </pre><c1>data-animation</c1>="<c2>opacity</c2>: {<c3 class="bl1">0</c3>: <c4>1</c4>, <c3 class="bl1">25vh</c3>: <c4>0</c4>}"</div>
+					<div><pre>·   ·   </pre><c1>data-animation</c1>="<c2>opacity</c2>: {<c3 class="bl2">25vh</c3>: <c4>0</c4>, <c3 class="bl2">50vh</c3>: <c4>1</c4>}"</div>
+				</div>
+				<div class="markup-attribute">
+					<div><pre>·   </pre><c1>data-animation</c1>="</div>
+					<div><pre>        </pre><c2>opacity</c2>: {<c3 class="bl7">125vh</c3>: <c4>0</c4>, <c3 class="bl7">150vh</c3>: <c4>1</c4>},</div>
+					<div><pre>        </pre><c2>transform</c2>: {</div>
+					<div><pre>            </pre><c3 class="bl7">125vh</c3>: <c4>translate3d(0, -15vh, -100vh) rotateX(70deg)</c4>,</div>
+					<div><pre>            </pre><c3 class="bl7 bl8">150vh</c3>: <c4>translate3d(0, 30vh, -100vh) rotateX(70deg)</c4>,</div>
+					<div><pre>            </pre><c3 class="bl8 bl9">175vh</c3>: <c4>translate3d(0, 0, -50vh) rotateX(0)</c4>,</div>
+					<div><pre>            </pre><c3 class="bl9">200vh</c3>: <c4>translate3d(0, 0, 0) rotateX(0)</c4></div>
+					<div><pre>        </pre>}</div>
+					<div><pre>    "</pre></div>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+
+		<div class="fullwindow"></div>
+
+	</div>
+
+</body>
+</html>

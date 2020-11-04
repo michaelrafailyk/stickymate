@@ -1,6 +1,6 @@
 /*
 
-	Stickymate v1.2.3
+	stickymate v1.2.5
 	Licensed under the MIT License
 	Copyright 2020 Michael Rafaylik
 	rafaylik@icloud.com
@@ -149,7 +149,7 @@
 						'status': null,
 						'locked': false
 					};
-					// break the params string to separate the numbers inside
+					// extract keys and values, verify and prepare them
 					keys:
 					for (let key in params[property]) {
 						let position = key.replace(/\[|\]/g, '').split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e});
@@ -157,16 +157,36 @@
 						for (let k = 0; k < list[property]['position'].length; k++) {
 							if (position[0] === list[property]['position'][k][0]) continue keys;
 						}
-						let values = params[property][key].split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e});
+						let values = params[property][key];
 						list[property]['position'].push(position);
 						list[property]['values'].push(values);
 					}
-					// verify params for missing values like units type or parentheses etc
-					// validation.autocomplete(list[property]['position']);
+					// aligning the order of multiple transform values, like scale(...), translate(...) etc
+					if (property == 'transform') {
+						// separate subvalues
+						for (let j = 0; j < list[property]['values'].length; j++) {
+							list[property]['values'][j] = list[property]['values'][j].split(/\s(?=[^()]*\()/);
+						}
+						// make the same order of subvalues inside each value
+						let subvalues = new Map(list[property]['values'].flat().map(item => [item.replace(/\(.*\)/, ''), item]));
+						let valuesOrdered = list[property]['values'].map(row => 
+							[...row.reduce((map, item) => map.set(item.replace(/\(.*\)/, ''), item), new Map(subvalues)).values()]
+						);
+						// join subvalues back to string
+						for (let k = 0; k < list[property]['values'].length; k++) {
+							list[property]['values'][k] = valuesOrdered[k].join(' ');
+						}
+					}
+					// separate the numbers inside values
+					for (let l = 0; l < list[property]['values'].length; l++) {
+						list[property]['values'][l] = list[property]['values'][l].split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e});
+					}
+					// verify values for missing units types
 					validation.autocomplete(list[property]['values']);
+					// convert positions units to pixels
 					for (let j = 0; j < list[property]['position'].length; j++) {
 						let numbers = +list[property]['position'][j][0];
-						let units = list[property]['position'][j][1]
+						let units = list[property]['position'][j][1];
 						list[property]['position'][j] = convert.unitsToPixels(numbers, units) + top;
 					}
 					paramsVerified.push(list);

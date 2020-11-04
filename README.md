@@ -35,6 +35,11 @@ $ npm install stickymate
 <div data-animation="opacity: {-100vh: 0, -75vh: 1, -25vh: 1, 0vh: .25}"></div>
 ```
 
+- Animation of `transform` CSS property with several values at once.
+``` html
+<div data-animation="transform: {-100vh: scale(1) translate(0, 0) rotate(0), -50vh: scale(.5) translate(50%, 0) rotate(22.5deg)}"></div>
+```
+
 - Animation with multiple CSS properties. Each CSS property has its own positioning keys and values.
 ``` html
 <div data-animation="opacity: {-100vh: 0, -75vh: 1}, transform: {-100vh: scale(.75), -50vh: scale(1)}"></div>
@@ -82,15 +87,6 @@ $ npm install stickymate
 - The `data-animation` attribute can contain one or more animated CSS properties, separated by commas.
 - Every `data-animation` CSS property can contain two or more position keys, separated by commas.
 - Set the name of animated CSS property without any vendor prefixes (`-webkit-` is added automatically).
-- Inside one animated CSS property, for each value, keep the same order of sub values, if there are several. It is necessary for the correct operation of the autocomplete function.
-``` html
-<div data-animation="transform: {
-    -75vh: scale(1) translate(0, 0),       // sub values in order - scale, translate
-    -50vh: scale(.5) translate(0, 50%),    // correctly, the same sub values order
-    -25vh: translate(0, 0) scale(1)        // wrong, sub values order is different
-}"></div>
-```
-- Inside one animated CSS property, use the same units for setting position keys.
 - Units of position keys should be `px` (pixels), `vh` (viewport height) or `vw` (viewport width).
 - You can set `from` position for `data-sticky` attribute like a `top / center / bottom`.
 ``` html

@@ -157,9 +157,8 @@
 						for (let k = 0; k < list[property]['position'].length; k++) {
 							if (position[0] === list[property]['position'][k][0]) continue keys;
 						}
-						let values = params[property][key];
 						list[property]['position'].push(position);
-						list[property]['values'].push(values);
+						list[property]['values'].push(params[property][key]);
 					}
 					// aligning the order of multiple transform values, like scale(...), translate(...) etc
 					if (property == 'transform') {

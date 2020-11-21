@@ -105,6 +105,7 @@ $ npm install stickymate
 - Проверенные CSS свойства:
     - `transform: matrix() scale() translate() rotate() translate3D() rotate3D()`
     - `opacity: 0-1`
+    - `backgroundSize: ...`
 
 ## Совместимость с браузером
 
@@ -114,7 +115,7 @@ $ npm install stickymate
     - Chrome: 56
     - Edge: 16
     - Firefox: 48
-    - Internet Explorer: No
+    - Internet Explorer: Нет
     - Opera: 43
     - Safari: 10
     - Chrome on Android: 56

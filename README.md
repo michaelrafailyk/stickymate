@@ -105,6 +105,7 @@ $ npm install stickymate
 - Validated CSS properties:
     - `transform: matrix() scale() translate() rotate() translate3D() rotate3D()`
     - `opacity: 0-1`
+    - `backgroundSize: ...`
 
 ## Browser compatibility
 

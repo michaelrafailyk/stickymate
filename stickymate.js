@@ -1,6 +1,6 @@
 /*
 
-	stickymate v1.2.6
+	stickymate v1.2.7
 	Licensed under the MIT License
 	Copyright 2020 Michael Rafaylik
 	rafaylik@icloud.com
@@ -167,7 +167,7 @@
 							list[property]['values'][j] = list[property]['values'][j].split(/\s(?=[^()]*\()/);
 						}
 						// make the same order of subvalues inside each value
-						let subvalues = new Map(list[property]['values'].flat().map(function(item) {
+						let subvalues = new Map(list[property]['values'].reduce(function(a, b) {return a.concat(b)}, []).map(function(item) {
 							return [item.replace(/\(.*\)/, ''), item]
 						}));
 						let valuesOrdered = list[property]['values'].map(function(row) { 

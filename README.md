@@ -126,7 +126,7 @@ All modern browsers that support ECMAScript 6 (2015)
     - Chrome: 49
     - Edge: 16
     - Firefox: 44
-    - Internet Explorer: 11
+    - Internet Explorer: No
     - Opera: 17
     - Safari: 10
     - Chrome on Android: 49

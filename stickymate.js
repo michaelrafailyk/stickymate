@@ -1,6 +1,6 @@
 /*
 
-	stickymate v1.2.8
+	stickymate v1.2.9
 	Licensed under the MIT License
 	Copyright 2020 Michael Rafaylik
 	rafaylik@icloud.com

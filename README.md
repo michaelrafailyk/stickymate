@@ -2,7 +2,7 @@ Stickymate is a tool that designed to help web developers easily create animatio
 
 ## Demo
 
-[StickyMate demonstration](https://rafaylik.github.io/stickymate/)
+[Stickymate demonstration](https://rafaylik.github.io/stickymate/)
 
 ## Installing
 

@@ -2,7 +2,7 @@ Stickymate это инструмент, который поможет веб-р�
 
 ## Демо
 
-[Демонстрация StickyMate](https://rafaylik.github.io/stickymate/)
+[Демонстрация Stickymate](https://rafaylik.github.io/stickymate/)
 
 ## Установка
 

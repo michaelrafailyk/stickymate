@@ -1,6 +1,6 @@
 /*
 
-	stickymate v1.2.9
+	stickymate v1.3.0
 	Licensed under the MIT License
 	Copyright 2020 Michael Rafaylik
 	rafaylik@icloud.com
@@ -201,66 +201,64 @@
 				});
 			}
 		},
-		detect: function() {
-			let scroll = window.pageYOffset;
-			for (let i = 0; i < animation.list.length; i++) {
-				let properties = animation.list[i]['params'];
-				for (let j = 0; j < properties.length; j++) {
-					let percent;
-					let property;
-					let params;
-					for (let key in properties[j]) {
-						property = key;
+		detect: function(i, scroll) {
+			scroll = scroll || window.pageYOffset;
+			let properties = animation.list[i]['params'];
+			for (let j = 0; j < properties.length; j++) {
+				let percent;
+				let property;
+				let params;
+				for (let key in properties[j]) {
+					property = key;
+				}
+				params = properties[j][property];
+				let position = params['position'];
+				let first = 0;
+				let last = position.length-1;
+				// the element is before the first position key of its animation, apply changes only once
+				if (scroll < position[first] && params['status'] != animation.status.before) {
+					params['status'] = animation.status.before;
+					percent = 0;
+					animation.set(animation.list[i], percent, first, first, j, property);
+				}
+				// the element is after the last position key of its animation, apply changes only once
+				else if (scroll >= position[last] && params['status'] != animation.status.after) {
+					params['status'] = animation.status.after;
+					percent = 100;
+					animation.set(animation.list[i], percent, last, last, j, property);
+				}
+				// the element is between the first and last position keys of its animation
+				else if (scroll >= position[first] && scroll < position[last]) {
+					if (params['status'] != animation.status.active) {
+						params['status'] = animation.status.active;
 					}
-					params = properties[j][property];
-					let position = params['position'];
-					let first = 0;
-					let last = position.length-1;
-					// the element is before the first position key of its animation, apply changes only once
-					if (scroll < position[first] && params['status'] != animation.status.before) {
-						params['status'] = animation.status.before;
-						percent = 0;
-						animation.set(animation.list[i], percent, first, first, j, property);
+					// animation has only two position keys (without intermediate)
+					if (position.length == 2) {
+						percent = convert.pixelsToPercent(position[first], position[last], scroll);
+						animation.set(animation.list[i], percent, first, last, j, property);
 					}
-					// the element is after the last position key of its animation, apply changes only once
-					else if (scroll >= position[last] && params['status'] != animation.status.after) {
-						params['status'] = animation.status.after;
-						percent = 100;
-						animation.set(animation.list[i], percent, last, last, j, property);
-					}
-					// the element is between the first and last position keys of its animation
-					else if (scroll >= position[first] && scroll < position[last]) {
-						if (params['status'] != animation.status.active) {
-							params['status'] = animation.status.active;
-						}
-						// animation has only two position keys (without intermediate)
-						if (position.length == 2) {
-							percent = convert.pixelsToPercent(position[first], position[last], scroll);
-							animation.set(animation.list[i], percent, first, last, j, property);
-						}
-						// animation has intermediate position keys
-						else {
-							for (let k = 0; k < position.length; k++) {
-								// looking for keys between which we are now
-								if (position[k+1] && scroll >= position[k] && scroll < position[k+1]) {
-									// at the first entry in any case, apply the changes
-									// next time animate only if the values between keys are not identical
-									if (!params['locked']) {
-										percent = convert.pixelsToPercent(position[k], position[k+1], scroll);
-										animation.set(animation.list[i], percent, k, k+1, j, property);
-									}
-									// compare values between keys, if they are the same - lock
-									let start = '';
-									let end = '';
-									for (let l = 0; l < params['values'][k].length; l++) {
-										start += params['values'][k][l];
-										end += params['values'][k+1][l];
-									}
-									if (start == end && !params['locked']) {
-										params['locked'] = true;
-									} else if (start != end && params['locked']) {
-										params['locked'] = false;
-									}
+					// animation has intermediate position keys
+					else {
+						for (let k = 0; k < position.length; k++) {
+							// looking for keys between which we are now
+							if (position[k+1] && scroll >= position[k] && scroll < position[k+1]) {
+								// at the first entry in any case, apply the changes
+								// next time animate only if the values between keys are not identical
+								if (!params['locked']) {
+									percent = convert.pixelsToPercent(position[k], position[k+1], scroll);
+									animation.set(animation.list[i], percent, k, k+1, j, property);
+								}
+								// compare values between keys, if they are the same - lock
+								let start = '';
+								let end = '';
+								for (let l = 0; l < params['values'][k].length; l++) {
+									start += params['values'][k][l];
+									end += params['values'][k+1][l];
+								}
+								if (start == end && !params['locked']) {
+									params['locked'] = true;
+								} else if (start != end && params['locked']) {
+									params['locked'] = false;
 								}
 							}
 						}
@@ -375,33 +373,31 @@
 				classes.list.push(list);
 			}
 		},
-		detect: function() {
-			let scroll = window.pageYOffset;
-			for (let i = 0; i < classes.list.length; i++) {
-				let element = classes.list[i]['element'];
-				let params = classes.list[i]['params'];
-				for (let j = 0; j < params.length; j++) {
-					let current = params[j]['position'];
-					let prev;
-					let next;
-					if (params[j-1]) prev = params[j-1]['position'];
-					if (params[j+1]) next = params[j+1]['position'];
-					let last = params[params.length-1]['position'];
-					// find the matching key
-					let ifNotLast = next && (scroll >= current) && (scroll < next) && !params[j]['status'];
-					let ifLast = (scroll >= current) && (current == last) && !params[j]['status'];
-					if (ifNotLast || ifLast) {
-						params[j]['status'] = true;
-						// if there is a need to apply classes only once, need to remove the following two conditions
-						if (params[j-1]) {
-							params[j-1]['status'] = false;
-						}
-						if (params[j+1]) {
-							params[j+1]['status'] = false;
-						}
-						// apply classes to an element
-						classes.set(element, params[j]['classes']);
+		detect: function(i, scroll) {
+			scroll = scroll || window.pageYOffset;
+			let element = classes.list[i]['element'];
+			let params = classes.list[i]['params'];
+			for (let j = 0; j < params.length; j++) {
+				let current = params[j]['position'];
+				let prev;
+				let next;
+				if (params[j-1]) prev = params[j-1]['position'];
+				if (params[j+1]) next = params[j+1]['position'];
+				let last = params[params.length-1]['position'];
+				// find the matching key
+				let ifNotLast = next && (scroll >= current) && (scroll < next) && !params[j]['status'];
+				let ifLast = (scroll >= current) && (current == last) && !params[j]['status'];
+				if (ifNotLast || ifLast) {
+					params[j]['status'] = true;
+					// if there is a need to apply classes only once, need to remove the following two conditions
+					if (params[j-1]) {
+						params[j-1]['status'] = false;
 					}
+					if (params[j+1]) {
+						params[j+1]['status'] = false;
+					}
+					// apply classes to an element
+					classes.set(element, params[j]['classes']);
 				}
 			}
 		},
@@ -413,7 +409,6 @@
 	};
 
 	// utilities
-
 	let validation = {
 		numbers: function(data) {
 			if (typeof data == 'number') return true;
@@ -518,7 +513,87 @@
 		}, 50);
 	};
 
-
+	let observation = function() {
+		// decide whether to use IntersectionObserver or window scroll event for detecting elements
+		if ('IntersectionObserver' in window) {
+			// observe the visibility of elements in modern browsers
+			let detector = {
+				animation: function(i) {
+					animation.detect(i);
+				},
+				classes: function(i) {
+					classes.detect(i);
+				},
+				list: {
+					animation: {},
+					classes: {}
+				}
+			};
+			const observer = new IntersectionObserver((entries, observer) => {
+				entries.forEach(entry => {
+					// get index and action type (animation/classes) of element to find it in animation/classes list
+					let index = entry.target.animation_index;
+					let action = entry.target.scroll_action;
+					// prepare a personal function wrapper for detecting element in a window scroll event
+					if (!detector.list[action][index]) {
+						detector.list[action][index] = function() {
+							detector[action](index);
+						};
+					}
+					// link or unlink this function to scroll event only when the element intersect a viewport
+					if (entry.isIntersecting) {
+						window.addEventListener('scroll', detector.list[action][index], {passive: true});
+					} else {
+						window.removeEventListener('scroll', detector.list[action][index], {passive: true});
+					}
+				});
+			});
+			animation.elements.forEach((elem, index) => {
+				// check if either parent has an overflow hidden
+				let parent = elem.parentElement;
+				while(parent) {
+					let styles = window.getComputedStyle(parent);
+					if (styles.getPropertyValue('overflow') == 'hidden' || styles.getPropertyValue('overflow-x') == 'hidden') {
+						// be sure that parent's position is not static
+						if (!elem.parentElement.style.position.length) {
+							elem.parentElement.style.position = 'relative';
+						}
+						// add the new element before original element for observing instead of him
+						let observed = document.createElement('div');
+						observed.style.position = 'absolute';
+						observed.style.pointerEvents = 'none';
+						observed.style.width = '100%';
+						observed.style.height = '100%';
+						elem.before(observed);
+						// now IntersectionObserver will observe this new element instead of original
+						elem = observed;
+						break;
+					}
+					parent = parent.parentElement;
+				}
+				// link index from animation/classes list and action type (animation/classes) to observed element
+				elem.animation_index = index;
+				elem.scroll_action = 'animation';
+				observer.observe(elem);
+			});
+			classes.elements.forEach((elem, index) => {
+				elem.animation_index = index;
+				elem.scroll_action = 'classes';
+				observer.observe(elem);
+			});
+		} else {
+			// listen scroll event in older browsers
+			window.addEventListener('scroll', function() {
+				let scroll = window.pageYOffset;
+				for (let i = 0; i < animation.list.length; i++) {
+					animation.detect(i, scroll);
+				}
+				for (let i = 0; i < classes.list.length; i++) {
+					classes.detect(i, scroll);
+				}
+			}, {passive: true});
+		}
+	};
 
 	// initialization
 	// get data and set keys and params
@@ -526,25 +601,32 @@
 		sticky.wrap();
 		sticky.get();
 		animation.get();
-		animation.detect();
 		classes.get();
-		classes.detect();
+		for (let i = 0; i < animation.list.length; i++) {
+			animation.detect(i);
+		}
+		for (let i = 0; i < classes.list.length; i++) {
+			classes.detect(i);
+		}
 	};
-	// checking state after async and/or defer
-	if (document.readyState == 'loading' || document.readyState == 'interactive') {
-		document.addEventListener('readystatechange', initialization);
-	} else {
+	// checking DOM state
+	if (document.readyState == 'loading') {
+		document.addEventListener('DOMContentLoaded', function() {
+			initialization();
+			observation();
+		});
+		window.onload = initialization;
+	} else if (document.readyState == 'interactive') {
 		initialization();
+		observation();
+		window.onload = initialization;
+	} else if (document.readyState == 'complete') {
+		initialization();
+		observation();
 	}
+	// update lists of element's position after resize
 	window.addEventListener('resize', function() {
 		resizeEnd(initialization);
 	}, {passive: true});
-	// detect keys
-	window.addEventListener('scroll', function() {
-		animation.detect();
-		classes.detect();
-	}, {passive: true});
-
-
 
 }

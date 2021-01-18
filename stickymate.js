@@ -548,39 +548,43 @@
 					}
 				});
 			});
-			animation.elements.forEach((elem, index) => {
-				// check if either parent has an overflow hidden
-				let parent = elem.parentElement;
-				while(parent) {
-					let styles = window.getComputedStyle(parent);
-					if (styles.getPropertyValue('overflow') == 'hidden' || styles.getPropertyValue('overflow-x') == 'hidden') {
-						// be sure that parent's position is not static
-						if (!elem.parentElement.style.position.length) {
-							elem.parentElement.style.position = 'relative';
+			if(animation && animation.elements) {
+				animation.elements.forEach((elem, index) => {
+					// check if either parent has an overflow hidden
+					let parent = elem.parentElement;
+					while(parent) {
+						let styles = window.getComputedStyle(parent);
+						if (styles.getPropertyValue('overflow') == 'hidden' || styles.getPropertyValue('overflow-x') == 'hidden') {
+							// be sure that parent's position is not static
+							if (!elem.parentElement.style.position.length) {
+								elem.parentElement.style.position = 'relative';
+							}
+							// add the new element before original element for observing instead of him
+							let observed = document.createElement('div');
+							observed.style.position = 'absolute';
+							observed.style.pointerEvents = 'none';
+							observed.style.width = '100%';
+							observed.style.height = '100%';
+							elem.before(observed);
+							// now IntersectionObserver will observe this new element instead of original
+							elem = observed;
+							break;
 						}
-						// add the new element before original element for observing instead of him
-						let observed = document.createElement('div');
-						observed.style.position = 'absolute';
-						observed.style.pointerEvents = 'none';
-						observed.style.width = '100%';
-						observed.style.height = '100%';
-						elem.before(observed);
-						// now IntersectionObserver will observe this new element instead of original
-						elem = observed;
-						break;
+						parent = parent.parentElement;
 					}
-					parent = parent.parentElement;
-				}
-				// link index from animation/classes list and action type (animation/classes) to observed element
-				elem.animation_index = index;
-				elem.scroll_action = 'animation';
-				observer.observe(elem);
-			});
-			classes.elements.forEach((elem, index) => {
-				elem.animation_index = index;
-				elem.scroll_action = 'classes';
-				observer.observe(elem);
-			});
+					// link index from animation/classes list and action type (animation/classes) to observed element
+					elem.animation_index = index;
+					elem.scroll_action = 'animation';
+					observer.observe(elem);
+				});
+			}
+			if(classes && classes.elements) {
+				classes.elements.forEach((elem, index) => {
+					elem.animation_index = index;
+					elem.scroll_action = 'classes';
+					observer.observe(elem);
+				});
+			}
 		} else {
 			// listen scroll event in older browsers
 			window.addEventListener('scroll', function() {

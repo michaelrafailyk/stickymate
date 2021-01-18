@@ -1,6 +1,6 @@
 /*
 
-	stickymate v1.3.0
+	stickymate v1.3.1
 	Licensed under the MIT License
 	Copyright 2020 Michael Rafaylik
 	rafaylik@icloud.com
@@ -548,7 +548,7 @@
 					}
 				});
 			});
-			if(animation && animation.elements) {
+			if (animation && animation.elements) {
 				animation.elements.forEach((elem, index) => {
 					// check if either parent has an overflow hidden
 					let parent = elem.parentElement;
@@ -578,7 +578,7 @@
 					observer.observe(elem);
 				});
 			}
-			if(classes && classes.elements) {
+			if (classes && classes.elements) {
 				classes.elements.forEach((elem, index) => {
 					elem.animation_index = index;
 					elem.scroll_action = 'classes';

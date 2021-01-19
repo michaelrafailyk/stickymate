@@ -1,6 +1,6 @@
 /*
 
-	stickymate v1.3.1
+	stickymate v1.3.2
 	Licensed under the MIT License
 	Copyright 2020 Michael Rafaylik
 	rafaylik@icloud.com
@@ -556,7 +556,8 @@
 						let styles = window.getComputedStyle(parent);
 						if (styles.getPropertyValue('overflow') == 'hidden' || styles.getPropertyValue('overflow-x') == 'hidden') {
 							// be sure that parent's position is not static
-							if (!elem.parentElement.style.position.length) {
+							let parentPosition = window.getComputedStyle(elem.parentElement).getPropertyValue('position');
+							if (parentPosition == 'static') {
 								elem.parentElement.style.position = 'relative';
 							}
 							// add the new element before original element for observing instead of him

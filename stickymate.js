@@ -1,6 +1,6 @@
 /*
 
-	stickymate v1.3.3
+	stickymate v1.3.4
 	Licensed under the MIT License
 	Copyright 2020 Michael Rafaylik
 	rafaylik@icloud.com
@@ -565,6 +565,8 @@
 							let observed = document.createElement('div');
 							observed.style.position = 'absolute';
 							observed.style.pointerEvents = 'none';
+							observed.style.left = '0';
+							observed.style.top = '0';
 							observed.style.width = '100%';
 							observed.style.height = '100%';
 							elem.before(observed);

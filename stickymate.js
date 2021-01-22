@@ -1,6 +1,6 @@
 /*
 
-	stickymate v1.3.2
+	stickymate v1.3.3
 	Licensed under the MIT License
 	Copyright 2020 Michael Rafaylik
 	rafaylik@icloud.com
@@ -40,7 +40,8 @@
 							} else {
 								sticky.elements[i].parentNode.classList.add(sticky.container);
 								// change static position to relative to properly get the offsetTop in animation.get
-								if (!sticky.elements[i].parentNode.style.position.length) {
+								let parentPosition = window.getComputedStyle(sticky.elements[i].parentNode).getPropertyValue('position');
+								if (parentPosition == 'static') {
 									sticky.elements[i].parentNode.style.position = 'relative';
 								}
 							}

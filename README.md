@@ -15,9 +15,9 @@ $ npm install stickymate
 
 ## Examples
 
-- Sticky and animated element (two attributes at once). In this example, the element sticks to the screen and its opacity changes from `1` to `0` while the user scrolls the page one viewport height.
+- All three attributes at once. In this example, the element sticks to the screen and its opacity changes from `1` to `0` while the user scrolls the page one viewport height. After that the class `class1` will be added to the element.
 ``` html
-<div data-sticky="from: 0, duration: 100vh" data-animation="opacity: {0: 1, 100vh: 0}"></div>
+<div data-sticky="from: 0, duration: 100vh" data-animation="opacity: {0: 1, 100vh: 0}" data-classes="100vh: {add: class1}"></div>
 ```
 
 - Sticky element. When top of the element reaches the top of the viewport (`from: 0`), it will stick on the screen until you scroll up two viewport height (`duration: 200vh`) from that moment.
@@ -105,7 +105,10 @@ $ npm install stickymate
 - Validated CSS properties:
     - `transform: matrix() scale() translate() rotate() translate3D() rotate3D()`
     - `opacity: 0-1`
-    - `backgroundSize: ...`
+    - `background-size: ...`
+    - `background-position: ...`
+    - `border: ...`
+    - `font-size: ...`
 
 ## Browser compatibility
 
@@ -139,8 +142,7 @@ All modern browsers that support ECMAScript 6 (2015)
     - Doesn't work: `element with overflow: hidden` \> `sticky & animated element`.
     - Work: `sticky element with overflow: hidden` \> `animated element`.
 - Matrix and rotation. Don't try to rotate the element with the `transform: matrix()` because script doesn't calculate `sin` and `cos` for correct transformation. To rotate, use `transform: rotate()`.
-- Animation and background fill in Safari macOS. If the sticky element doesn't have a `background` fill (`none` or `transparent`), the animation on the child element will not be smooth. **Under review**.
-- Scrolling in Edge (EdgeHTML only). Periodic bugs in positioning animated elements inside parent with `overflow: hidden` when scrolling in the opposite direction. **Under review**.
+- Scrolling in Edge (EdgeHTML only). Periodic bugs in positioning animated elements inside parent with `overflow: hidden` when scrolling in the opposite direction.
 
 ## Author and license
 

@@ -10,8 +10,59 @@ Stickymate is a tool that designed to help web developers easily create animatio
 ```
 $ npm install stickymate
 ```
-- Place a `stickymate.js` in the directory of your application.
 - Include `stickymate.js` at the `head` section or at the end of the `body` tag.
+
+## Usage
+
+- Add a `data-sticky`, `data-animation` or `data-classes` attributes to your element together or apart.
+``` html
+<div data-sticky="..." data-animation="..." data-classes="..."></div>
+```
+- Set parameters for attributes.
+``` html
+<div data-sticky="from: 0, duration: 100vh" data-animation="opacity: {0: 1, 100vh: 0}" data-classes="0vh: {add: class1}"></div>
+```
+- Set parameters by the following scheme.
+``` html
+<div
+    data-sticky="
+        from: position,        // position from the top of the viewport when the element sticks to the screen
+        duration: position     // position when the element will no longer sticky, extends the min-height of the parent container
+    "
+    data-animation="
+        CSS property: {
+            position: value,   // animate from
+            position: value,   // optional, intermediate keys (.. to / from ..)
+            position: value    // animate to
+        },
+        CSS property: {...}    // optional, additional CSS properties
+    "
+    data-classes="
+        position: {                      // position from the top of the viewport
+            add: classname classname,    // class names (one or more separated by a space) to be added
+            remove: classname classname  // class names (one or more separated by a space) to be removed
+        },
+        position: {...}.                 // optional
+    "
+></div>
+```
+- The `data-sticky` attribute can contain only two params, namely `from` and `duration`.
+- If there is no need to extends height of the parent container, you can specify `0` for the `duration` value.
+- The `data-classes` attribute can contain `add` and `remove` keys separately or together.
+- The `add` and `remove` keys of the `data-classes` attribute can contain one classname or several, separated by spaces.
+- The `data-animation` attribute can contain one or more animated CSS properties, separated by commas.
+- Every `data-animation` CSS property can contain two or more position keys, separated by commas.
+- Set the name of animated CSS property without any vendor prefixes (`-webkit-` is added automatically).
+- Units of position keys should be `px` (pixels), `vh` (viewport height) or `vw` (viewport width).
+- You can set `from` position for `data-sticky` attribute like a `top / center / bottom`.
+``` html
+<div data-sticky="from: center, duration: 100vh"></div>
+```
+- Units and values of `data-animation` CSS property values are set the same as in CSS.
+- `0` position can be set without units.
+- `-100vh` = top of element reached the bottom of the viewport.
+- `0vh` or `0px` or just `0` = top of element reached the top of the viewport.
+- `100vh` = top of element reached the top of the viewport + one screen height has been scrolled after this.
 
 ## Examples
 
@@ -50,54 +101,6 @@ $ npm install stickymate
 <div data-classes="25vh: {add: class1}, 50vh: {add: class2 class3, remove: class1}, 75vh: {remove: class2 class3}"></div>
 ```
 
-## Usage
-
-- Add a `data-sticky`, `data-animation` or `data-classes` attributes to your element together or apart.
-``` html
-<div data-sticky="..." data-animation="..." data-classes="..."></div>
-```
-- Set parameters by the following scheme.
-``` html
-<div
-    data-sticky="
-        from: position,        // position from the top of the viewport when the element sticks to the screen
-        duration: position     // position when the element will no longer sticky, extends the min-height of the parent container
-    "
-    data-animation="
-        CSS property: {
-            position: value,   // animate from
-            position: value,   // optional, intermediate keys (.. to / from ..)
-            position: value    // animate to
-        },
-        CSS property: {...}    // optional, additional CSS properties
-    "
-    data-classes="
-        position: {                      // position from the top of the viewport
-            add: classname classname,    // class names (one or more separated by a space) to be added
-            remove: classname classname  // class names (one or more separated by a space) to be removed
-        },
-        position: {...}.                 // optional
-    "
-></div>
-```
-- The `data-sticky` attribute can contain only two params, namely `from` and `duration`.
-- If there is no need to extends the min-height of the parent container, you can specify `0` for the `duration` value.
-- The `data-classes` attribute can contain `add` and `remove` keys separately or together.
-- The `add` and `remove` keys of the `data-classes` attribute can contain one classname or several, separated by spaces.
-- The `data-animation` attribute can contain one or more animated CSS properties, separated by commas.
-- Every `data-animation` CSS property can contain two or more position keys, separated by commas.
-- Set the name of animated CSS property without any vendor prefixes (`-webkit-` is added automatically).
-- Units of position keys should be `px` (pixels), `vh` (viewport height) or `vw` (viewport width).
-- You can set `from` position for `data-sticky` attribute like a `top / center / bottom`.
-``` html
-<div data-sticky="from: center, duration: 100vh"></div>
-```
-- Units of `data-animation` CSS property values are set the same as in CSS.
-- `0` position can be set without units.
-- `-100vh` = top of element reached the bottom of the viewport.
-- `0vh` or `0px` or just `0` = top of element reached the top of the viewport.
-- `100vh` = top of element reached the top of the viewport + one screen height has been scrolled after this.
-
 ## Animated CSS properties
 
 - You can animate any CSS property whose value contains just numbers or numbers in `%`, `px`, `vw`, `vh`, `em`, `rem`, `deg`.
@@ -112,29 +115,28 @@ $ npm install stickymate
 
 ## Browser compatibility
 
-All modern browsers that support ECMAScript 6 (2015)
+All modern browsers that support ECMAScript 6
 
-- For `data-sticky`
-    - Chrome: 56
-    - Edge: 16
-    - Firefox: 48
-    - Internet Explorer: No
-    - Opera: 43
-    - Safari: 10
-    - Chrome on Android: 56
-    - Firefox on Android: 59
-    - Safari on iOS: 10
+- Chrome: 56
+- Edge: 16
+- Firefox: 48
+- Internet Explorer: No
+- Opera: 43
+- Safari: 10
+- Chrome on Android: 56
+- Firefox on Android: 59
+- Safari on iOS: 10
 
-- For `data-animation`
-    - Chrome: 49
-    - Edge: 16
-    - Firefox: 44
-    - Internet Explorer: No
-    - Opera: 17
-    - Safari: 10
-    - Chrome on Android: 49
-    - Firefox on Android: 44
-    - Safari on iOS: 10
+## Version history
+
+- 1.2.5
+    - Parameters setting has been simplified. Old syntax: `data-sticky='{"from": "0vh", "duration": "100vh"}'`. New syntax: `data-sticky="from: 0vh, duration: 100vh"`.
+    - New `data-classes` attribute. Now you can add/remove one or more CSS classnames to element on specified key.
+    - Release on npm.
+- 1.3.0
+    - Tracking elements with `IntersectionObserver` instead of constantly listening for the `scroll` event.
+- 1.3.6
+    - Keys are now automatically sorted in order, which eliminates animation glitches if keys are specified in random order.
 
 ## Known minor issues
 

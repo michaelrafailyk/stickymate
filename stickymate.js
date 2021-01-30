@@ -1,8 +1,8 @@
 /*
 
-	stickymate v1.3.5
+	stickymate v1.3.6
 	Licensed under the MIT License
-	Copyright 2020 Michael Rafaylik
+	Copyright 2021 Michael Rafaylik
 	rafaylik@icloud.com
 	https://github.com/rafaylik/stickymate
 	https://www.npmjs.com/package/stickymate
@@ -81,8 +81,9 @@
 						params['from'][0] = vh - eh;
 					}
 					// convert any type of keys to the pixels
-					let start = convert.unitsToPixels(+params['from'][0], params['from'][1]);
-					start = -start + 0;
+					let start_numbers = -params['from'][0] + 0;
+					let start_units = params['from'][1];
+					let start = convert.unitsToPixels(start_numbers, start_units);
 					let end = convert.unitsToPixels(+params['duration'][0], params['duration'][1]);
 					// compose the min-height for the parent container
 					// but get correct offset until the element is not a sticky
@@ -130,69 +131,68 @@
 				let params = animation.elements[i].getAttribute(animation.attribute);
 				// create correct json string
 				params = validation.tojson(params);
-				// to preserve the order of the keys, wrap each of them in an array of one element
-				let beforeFirstKey = /\:(\s+)?\{(\s+)?\"/g;
-				let beforeNextKeys = /\"(\s+)?\,(\s+)?\"/g;
-				let afterEachKey = /\"(\s+)?\:(\s+)?\"/g;
-				params = params.replace(beforeFirstKey, ': {"[').replace(beforeNextKeys, '", "[').replace(afterEachKey, ']": "');
 				try {
 					params = JSON.parse(params);
-				} catch (e) {continue element}
+				} catch (e) { continue element }
 				// create an array and fill it with verified params
 				let paramsVerified = [];
-				for (let property in params) {
-					if (typeof animation.elements[i].style[property] === 'undefined') continue element;
-					if (Object.keys(params[property]).length < 2) continue element;
+				for (let property_name in params) {
+					if (typeof animation.elements[i].style[property_name] === 'undefined') continue element;
+					if (Object.keys(params[property_name]).length < 2) continue element;
+					let property_value = {};
 					let list = {};
-					list[property] = {
+					list[property_name] = {
 						'position': [],
 						'values': [],
 						'status': null,
 						'locked': false
 					};
-					// extract keys and values, verify and prepare them
+					// convert keys to pixels and get sorted keys
 					keys:
-					for (let key in params[property]) {
-						let position = key.replace(/\[|\]/g, '').split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e});
+					for (let key in params[property_name]) {
+						let position = key.split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e});
 						if (!position[0].match(/\d/)) continue keys;
-						for (let k = 0; k < list[property]['position'].length; k++) {
-							if (position[0] === list[property]['position'][k][0]) continue keys;
+						let numbers = +position[0] + 0;
+						let units = position[1];
+						position = convert.unitsToPixels(numbers, units) + top;
+						position = Math.round(position);
+						property_value[position] = params[property_name][key];
+					}
+					// save keys and values saparately, verify and prepare them
+					save:
+					for (let key in property_value) {
+						for (let k = 0; k < list[property_name]['position'].length; k++) {
+							if (+key === list[property_name]['position'][k][0]) continue save;
 						}
-						list[property]['position'].push(position);
-						list[property]['values'].push(params[property][key]);
+						list[property_name]['position'].push(+key);
+						list[property_name]['values'].push(property_value[key]);
 					}
 					// aligning the order of multiple transform values, like scale(...), translate(...) etc
-					if (property == 'transform') {
+					if (property_name == 'transform') {
 						// separate subvalues
-						for (let j = 0; j < list[property]['values'].length; j++) {
-							list[property]['values'][j] = list[property]['values'][j].split(/\s(?=[^()]*\()/);
+						for (let j = 0; j < list[property_name]['values'].length; j++) {
+							list[property_name]['values'][j] = list[property_name]['values'][j].split(/\s(?=[^()]*\()/);
 						}
 						// make the same order of subvalues inside each value
-						let subvalues = new Map([].concat(...list[property]['values']).map(function(item) {
+						let subvalues = new Map([].concat(...list[property_name]['values']).map(function(item) {
 							return [item.replace(/\(.*\)/, ''), item]
 						}));
-						let valuesOrdered = list[property]['values'].map(function(row) { 
+						let valuesOrdered = list[property_name]['values'].map(function(row) { 
 							return [...row.reduce(function(map, item) {
 								return map.set(item.replace(/\(.*\)/, ''), item)
 							}, new Map(subvalues)).values()]
 						});
 						// join subvalues back to string
-						for (let k = 0; k < list[property]['values'].length; k++) {
-							list[property]['values'][k] = valuesOrdered[k].join(' ');
+						for (let k = 0; k < list[property_name]['values'].length; k++) {
+							list[property_name]['values'][k] = valuesOrdered[k].join(' ');
 						}
 					}
 					// separate the numbers inside values
-					for (let l = 0; l < list[property]['values'].length; l++) {
-						list[property]['values'][l] = list[property]['values'][l].split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e});
+					for (let l = 0; l < list[property_name]['values'].length; l++) {
+						list[property_name]['values'][l] = list[property_name]['values'][l].split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e});
 					}
 					// verify values for missing units types
-					validation.autocomplete(list[property]['values']);
-					// convert positions units to pixels
-					for (let j = 0; j < list[property]['position'].length; j++) {
-						let numbers = +list[property]['position'][j][0];
-						let units = list[property]['position'][j][1];
-						list[property]['position'][j] = convert.unitsToPixels(numbers, units) + top;
-					}
+					validation.autocomplete(list[property_name]['values']);
 					paramsVerified.push(list);
 				}
 				// make a global list of animated elements with them positions, values and statuses
@@ -305,6 +305,7 @@
 				classes.elements = document.querySelectorAll('[' + classes.attribute + ']');
 			}
 			classes.list = [];
+			element:
 			for (let i = 0; i < classes.elements.length; i++) {
 				// get correct top position
 				// if element is inside the sticky, its top position moves along scroll
@@ -313,12 +314,9 @@
 				let params = classes.elements[i].getAttribute(classes.attribute);
 				// create correct json string
 				params = validation.tojson(params);
-				// to preserve the order of the keys, wrap each of them in an array of one element
-				let beforeFirstKey = /^(\s+)?\{(\s+)?\"/g;
-				let beforeEachKey = /\}(\s+)?\,(\s+)?\"/g;
-				let afterEachKey = /\"(\s+)?\:(\s+)?\{(\s+)?\"/g;
-				params = params.replace(beforeFirstKey, '{"[').replace(beforeEachKey, '}, "[').replace(afterEachKey, ']": {"');
-				params = JSON.parse(params);
+				try {
+					params = JSON.parse(params);
+				} catch (e) { continue element }
 				// list of keys and final classes for current element
 				let list = {
 					'element': classes.elements[i],
@@ -333,23 +331,30 @@
 					'status': false,
 					'classes': classes.elements[i].getAttribute('data-classlist-original')
 				});
+				// convert keys to pixels and get sorted keys
+				let params_sorted = {};
+				keys:
+				for (let key in params) {
+					let position = key.split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e});
+					if (!position[0].match(/\d/)) continue keys;
+					let numbers = +position[0] + 0;
+					let units = position[1];
+					position = convert.unitsToPixels(numbers, units) + top;
+					position = Math.round(position);
+					params_sorted[position] = params[key];
+				}
 				// compare classlist of current key with classlist of previous key and rewrite updated current classlist
 				let counter = 0;
-				for (let key in params) {
-					let position = key.replace(/\[|\]/g, '').split(/(-?\d*\.?\d+)/).filter(function(e) {return e === 0 || e});
-					let numbers = +position[0];
-					let units = position[1];
-					// convert any type of keys to the pixels
-					position = convert.unitsToPixels(numbers, units) + top;
+				for (let key in params_sorted) {
 					// compose current key
 					let sublist = {
-						'position': position,
+						'position': +key,
 						'status': false,
 						'classes': list['params'][counter]['classes']
 					};
 					// add the class only if it was not in the previous key
-					if (params[key]['add']) {
-						let addList = params[key]['add'].split(/\,?\s+|\,|\s+/g);
+					if (params_sorted[key]['add']) {
+						let addList = params_sorted[key]['add'].split(/\,?\s+|\,|\s+/g);
 						for (let j = 0; j < addList.length; j++) {
 							if (!sublist['classes'].match(addList[j])) {
 								sublist['classes'] += ' ' + addList[j];
@@ -357,8 +362,8 @@
 						}
 					}
 					// remove the class only if it was in the previous key
-					if (params[key]['remove']) {
-						let removeList = params[key]['remove'].split(/\,?\s+|\,|\s+/g);
+					if (params_sorted[key]['remove']) {
+						let removeList = params_sorted[key]['remove'].split(/\,?\s+|\,|\s+/g);
 						for (let j = 0; j < removeList.length; j++) {
 							if (sublist['classes'].match(removeList[j])) {
 								sublist['classes'] = sublist['classes'].replace(removeList[j], '');
@@ -410,6 +415,7 @@
 	};
 
 	// utilities
+	
 	let validation = {
 		numbers: function(data) {
 			if (typeof data == 'number') return true;

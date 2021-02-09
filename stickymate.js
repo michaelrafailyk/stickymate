@@ -1,10 +1,10 @@
 /*
 
-	stickymate v1.3.6
+	stickymate v1.3.7
 	Licensed under the MIT License
-	Copyright 2021 Michael Rafaylik
-	rafaylik@icloud.com
-	https://github.com/rafaylik/stickymate
+	Copyright 2021 Michael Rafailyk
+	rafailyk@icloud.com
+	https://github.com/rafailyk/stickymate
 	https://www.npmjs.com/package/stickymate
 
 */

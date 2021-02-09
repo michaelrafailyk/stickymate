@@ -2,11 +2,11 @@ Stickymate is a tool that designed to help web developers easily create animatio
 
 ## Demo
 
-[Stickymate demonstration](https://rafaylik.github.io/stickymate/)
+[Stickymate demonstration](https://rafailyk.github.io/stickymate/)
 
 ## Installing
 
-- [Download](https://github.com/rafaylik/stickymate/archive/master.zip) and unzip, or just
+- [Download](https://github.com/rafailyk/stickymate/archive/master.zip) and unzip, or just
 ```
 $ npm install stickymate
 ```
@@ -132,9 +132,12 @@ All modern browsers that support ECMAScript 6
 - 1.2.5
     - Parameters setting has been simplified. Old syntax: `data-sticky='{"from": "0vh", "duration": "100vh"}'`. New syntax: `data-sticky="from: 0vh, duration: 100vh"`.
     - New `data-classes` attribute. Now you can add/remove one or more CSS classnames to element on specified key.
+    - Multiple transform values, like `scale(...)`, `translate(...)` etc, are now automatically sorted in the same order for every key.
     - Release on npm.
 - 1.3.0
     - Tracking elements with `IntersectionObserver` instead of constantly listening for the `scroll` event.
+- 1.3.3
+    - Incorrect calculation of parent element position type has been fixed.
 - 1.3.6
     - Keys are now automatically sorted in order, which eliminates animation glitches if keys are specified in random order.
 
@@ -148,4 +151,4 @@ All modern browsers that support ECMAScript 6
 
 ## Author and license
 
-**Michael Rafaylik** - [rafaylik](https://github.com/rafaylik) on GitHub. Project is licensed under the MIT License - see the [LICENSE.md](./LICENSE) file for details.
+**Michael Rafailyk** - [rafaylik](https://github.com/rafailyk) on GitHub. Project is licensed under the MIT License - see the [LICENSE.md](./LICENSE) file for details.

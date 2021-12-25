@@ -96,7 +96,7 @@ $ npm install stickymate
 <div data-animation="opacity: {-100vh: 0, -75vh: 1}, transform: {-100vh: scale(.75), -50vh: scale(1)}"></div>
 ```
 
-- Добавление и удаление классов. Примеры можно увидеть в правой колонке [Demo](https://rafaylik.github.io/stickymate/), где классами подсвечиваются активные ключи.
+- Добавление и удаление классов. Примеры можно увидеть в правой колонке [Demo](https://rafailyk.github.io/stickymate/), где классами подсвечиваются активные ключи.
 ``` html
 <div data-classes="25vh: {add: class1}, 50vh: {add: class2 class3, remove: class1}, 75vh: {remove: class2 class3}"></div>
 ```
@@ -151,4 +151,4 @@ $ npm install stickymate
 
 ## Автор и лицензия
 
-**Michael Rafailyk** - [rafaylik](https://github.com/rafailyk) на GitHub. Проект разрабатывается под MIT License - детали смотрите в [LICENSE.md](./LICENSE).
+**Michael Rafailyk** - [rafailyk](https://github.com/rafailyk) на GitHub. Проект разрабатывается под MIT License - детали смотрите в [LICENSE.md](./LICENSE).

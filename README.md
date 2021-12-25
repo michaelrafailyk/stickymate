@@ -96,7 +96,7 @@ $ npm install stickymate
 <div data-animation="opacity: {-100vh: 0, -75vh: 1}, transform: {-100vh: scale(.75), -50vh: scale(1)}"></div>
 ```
 
-- Adding and Removing Classes. Examples can be seen in the right column of the [Demo](https://rafaylik.github.io/stickymate/), where active keys are highlighted by classes.
+- Adding and Removing Classes. Examples can be seen in the right column of the [Demo](https://rafailyk.github.io/stickymate/), where active keys are highlighted by classes.
 ``` html
 <div data-classes="25vh: {add: class1}, 50vh: {add: class2 class3, remove: class1}, 75vh: {remove: class2 class3}"></div>
 ```
@@ -151,4 +151,4 @@ All modern browsers that support ECMAScript 6
 
 ## Author and license
 
-**Michael Rafailyk** - [rafaylik](https://github.com/rafailyk) on GitHub. Project is licensed under the MIT License - see the [LICENSE.md](./LICENSE) file for details.
+**Michael Rafailyk** - [rafailyk](https://github.com/rafailyk) on GitHub. Project is licensed under the MIT License - see the [LICENSE.md](./LICENSE) file for details.

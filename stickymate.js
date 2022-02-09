@@ -155,7 +155,7 @@
 						let numbers = +position[0] + 0;
 						let units = position[1];
 						position = convert.unitsToPixels(numbers, units) + top;
-						position = Math.round(position);
+						position = (0 > position) ? 0 : Math.round(position);
 						property_value[position] = params[property_name][key];
 					}
 					// save keys and values saparately, verify and prepare them

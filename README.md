@@ -2,11 +2,11 @@ Stickymate is a tool that designed to help web developers easily create animatio
 
 ## Demo
 
-[Stickymate demonstration](https://rafailyk.github.io/stickymate/)
+[Stickymate demonstration](https://michaelrafailyk.github.io/stickymate/)
 
 ## Installing
 
-- [Download](https://github.com/rafailyk/stickymate/archive/master.zip) and unzip, or just
+- [Download](https://github.com/michaelrafailyk/stickymate/archive/master.zip) and unzip, or just
 ```
 $ npm install stickymate
 ```
@@ -96,7 +96,7 @@ $ npm install stickymate
 <div data-animation="opacity: {-100vh: 0, -75vh: 1}, transform: {-100vh: scale(.75), -50vh: scale(1)}"></div>
 ```
 
-- Adding and Removing Classes. Examples can be seen in the right column of the [Demo](https://rafailyk.github.io/stickymate/), where active keys are highlighted by classes.
+- Adding and Removing Classes. Examples can be seen in the right column of the [Demo](https://michaelrafailyk.github.io/stickymate/), where active keys are highlighted by classes.
 ``` html
 <div data-classes="25vh: {add: class1}, 50vh: {add: class2 class3, remove: class1}, 75vh: {remove: class2 class3}"></div>
 ```
@@ -151,4 +151,4 @@ All modern browsers that support ECMAScript 6
 
 ## Author and license
 
-**Michael Rafailyk** - [rafailyk](https://github.com/rafailyk) on GitHub. Project is licensed under the MIT License - see the [LICENSE.md](./LICENSE) file for details.
+**Michael Rafailyk** - [michaelrafailyk](https://github.com/michaelrafailyk) on GitHub. Project is licensed under the MIT License - see the [LICENSE.md](./LICENSE) file for details.

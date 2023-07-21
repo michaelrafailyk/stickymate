@@ -55,11 +55,6 @@ p {
 
 
 /* markup */
-@font-face {
-	font-family: Mono;
-	src: url(monospace.woff);
-	font-style: normal;
-}
 .markup {
 	display: none;
 	min-height: 100vh;
@@ -71,7 +66,8 @@ p {
 }
 .markup-attribute {
 	margin: 1rem 2rem 0 2rem;
-	font: .85rem Mono;
+	font-family: monospace, monospace;
+	font-size: .85rem;
 	color: #666;
 }
 .markup-attribute:first-child {
@@ -86,7 +82,8 @@ p {
 pre {
 	display: inline-block;
 	margin: 0;
-	font: .85rem Mono;
+	font-family: monospace, monospace;
+	font-size: .85rem;
 }
 c1 {
 	color: #FF4754;

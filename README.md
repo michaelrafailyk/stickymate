@@ -6,10 +6,7 @@ Stickymate is a tool that designed to help web developers easily create animatio
 
 ## Installing
 
-- [Download](https://github.com/michaelrafailyk/stickymate/archive/master.zip) and unzip, or just
-```
-$ npm install stickymate
-```
+- [Download](https://github.com/michaelrafailyk/stickymate/archive/master.zip) and unzip
 - Include `stickymate.js` at the `head` section or at the end of the `body` tag.
 
 ## Usage

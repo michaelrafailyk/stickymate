@@ -66,7 +66,7 @@ Stickymate is a tool that designed to help web developers easily create animatio
 
 ## Examples
 
-- All three attributes at once. In this example, the element sticks to the screen and its opacity changes from `1` to `0` while the user scrolls the page one viewport height. After that the class `class1` will be added to the element.
+- A few attributes at once. In this example, the element sticks to the screen and its opacity changes from `1` to `0` while the user scrolls the page one viewport height. After that the class `class1` will be added to the element.
 ``` html
 <div data-sticky="from: 0, duration: 100vh" data-animation="opacity: {0: 1, 100vh: 0}" data-classes="100vh: {add: class1}"></div>
 ```

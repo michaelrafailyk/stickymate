@@ -129,8 +129,8 @@
 				let top = correctTop(animation.elements[i]);
 				// sync top position of the element (without moving it) with the other element referenced by id
 				if (animation.elements[i].hasAttribute('data-sync-with')) {
-					let id = animation.elements[i].getAttribute('data-sync-with').replace('id:', '').replace(/ /g, '');
-					let elemToSync = document.getElementById(id);
+					let idOfElemToSync = animation.elements[i].getAttribute('data-sync-with').replace('id:', '').replace(/ /g, '');
+					let elemToSync = document.getElementById(idOfElemToSync);
 					top = correctTop(elemToSync);
 				}
 				// get params about position keys and animated values
@@ -318,8 +318,8 @@
 				let top = correctTop(classes.elements[i]);
 				// sync top position of the element (without moving it) with the other element referenced by id
 				if (classes.elements[i].hasAttribute('data-sync-with')) {
-					let id = classes.elements[i].getAttribute('data-sync-with').replace('id:', '').replace(/ /g, '');
-					let elemToSync = document.getElementById(id);
+					let idOfElemToSync = classes.elements[i].getAttribute('data-sync-with').replace('id:', '').replace(/ /g, '');
+					let elemToSync = document.getElementById(idOfElemToSync);
 					top = correctTop(elemToSync);
 				}
 				// get params about position keys and classes in values

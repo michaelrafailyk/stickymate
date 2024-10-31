@@ -1,4 +1,4 @@
-Stickymate is a tool that designed to help web developers easily create animations without JavaScript knowledge, just setting animation params directly in the HTML markup. Stickymate combines extended sticky positioning and scroll-based animation features, so it can catch an element on the screen and animate it while the user scrolls the page. It is also possible to add and remove classes to control animation from CSS. Use your imagination to implement great ideas that will present your content in the most spectacular way.
+Stickymate is a tool that designed to help web developers easily create animations without JavaScript knowledge, just setting animation params directly in the HTML markup. Stickymate combines extended sticky positioning and scroll-based animation features, so it can catch an element on the screen and animate it while the user scrolls the page. It is also possible to add and remove classes to control animation from CSS. And one more thing, you can synchronize an animations of different elements to the vertical position of one of them.
 
 ## Demo
 
@@ -14,13 +14,13 @@ $ npm install stickymate
 
 ## Usage
 
-- Add a `data-sticky`, `data-animation` or `data-classes` attributes to your element together or apart.
+- Add a `data-sticky`, `data-animation`, `data-classes`, `data-sync-with` attributes to your element apart or together.
 ``` html
-<div data-sticky="..." data-animation="..." data-classes="..."></div>
+<div data-sticky="..." data-animation="..." data-classes="..." data-sync-with="..."></div>
 ```
 - Set parameters for attributes.
 ``` html
-<div data-sticky="from: 0, duration: 100vh" data-animation="opacity: {0: 1, 100vh: 0}" data-classes="0vh: {add: class1}"></div>
+<div data-sticky="from: 0, duration: 100vh" data-animation="opacity: {0: 1, 100vh: 0}" data-classes="0vh: {add: class1}" data-sync-with="id: syncwithme"></div>
 ```
 - Set parameters by the following scheme.
 ``` html
@@ -43,6 +43,9 @@ $ npm install stickymate
             remove: classname classname  // class names (one or more separated by a space) to be removed
         },
         position: {...}.                 // optional
+    "
+    data-sync-with="
+        id: value              // id of the element to synchronize animation with
     "
 ></div>
 ```
@@ -101,7 +104,7 @@ $ npm install stickymate
 <div data-classes="25vh: {add: class1}, 50vh: {add: class2 class3, remove: class1}, 75vh: {remove: class2 class3}"></div>
 ```
 
-- Synchronize an animations of different elements (followers) to one of them (leader). It works as if the follower's vertical position pretend to be the same as the leader's vertical position (without moving physically), just like a follower is located exactly where leader is located vertically. That is, when the leader's top touches the top of the viewport, it will be `0vh` for him and for all of the followers too.
+- Synchronize an animations of different elements (followers) to one of them (leader). It works as if the follower's vertical position pretend to be the same as the leader's vertical position (without moving physically), just like a follower is located exactly where leader is located vertically. That is, when the leader's top touches the top of the viewport, it will be `0vh` for him and for all of the followers too, and their animations will fire simultaneously.
 ``` html
 <div data-animation="..." id="leader"></div>
 <div data-animation="..." data-sync-with="id: leader"></div>
@@ -146,6 +149,8 @@ All modern browsers that support ECMAScript 6
     - Incorrect calculation of parent element position type has been fixed.
 - 1.3.6
     - Keys are now automatically sorted in order, which eliminates animation glitches if keys are specified in random order.
+- 1.4.0
+    - Added `data-sync-with` attribute that help to fire an animations of different elements simultaneously.
 
 ## Known minor issues
 
@@ -154,6 +159,7 @@ All modern browsers that support ECMAScript 6
     - Work: `sticky element with overflow: hidden` \> `animated element`.
 - Matrix and rotation. Don't try to rotate the element with the `transform: matrix()` because script doesn't calculate `sin` and `cos` for correct transformation. To rotate, use `transform: rotate()`.
 - Scrolling in Edge (EdgeHTML only). Periodic bugs in positioning animated elements inside parent with `overflow: hidden` when scrolling in the opposite direction.
+- Setting animations to subelements of SVG line path or line. The first issue is that IntersectionObserver can't detect SVG in some cases so you need to turn it off by replacing value `true` to `false` on line `537` in the stickymate.js. The second issue is getting correct vertical position of subelements inside SVG that is complicated because SVG has its own inner html structure. The workaround is to use `data-sync-with="id: ..."` attribute and sync animated subelements with some other element like its parrent/wrapper.
 
 ## Author and license
 

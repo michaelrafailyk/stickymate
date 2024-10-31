@@ -1,10 +1,10 @@
 /*
 
-	stickymate v1.3.7
+	stickymate v1.4.0
 	Licensed under the MIT License
-	Copyright 2021 Michael Rafailyk
+	Copyright 2021-2024 Michael Rafailyk
 	rafailyk@icloud.com
-	https://github.com/rafailyk/stickymate
+	https://github.com/michaelrafailyk/stickymate
 	https://www.npmjs.com/package/stickymate
 
 */
@@ -127,6 +127,12 @@
 				// get correct top position
 				// if animated element is inside the sticky, its top position moves along scroll
 				let top = correctTop(animation.elements[i]);
+				// sync top position of the element (without moving it) with the other element referenced by id
+				if (animation.elements[i].hasAttribute('data-sync-with')) {
+					let id = animation.elements[i].getAttribute('data-sync-with').replace('id: ', '');
+					let elemToSync = document.getElementById(id);
+					top = correctTop(elemToSync);
+				}
 				// get params about position keys and animated values
 				let params = animation.elements[i].getAttribute(animation.attribute);
 				// create correct json string
@@ -155,9 +161,7 @@
 						let numbers = +position[0] + 0;
 						let units = position[1];
 						position = convert.unitsToPixels(numbers, units) + top;
-						position = Math.round(position);
-						// version from Rattus
-						// position = (0 > position) ? 0 : Math.round(position);
+						position = (0 > position) ? 0 : Math.round(position);
 						property_value[position] = params[property_name][key];
 					}
 					// save keys and values saparately, verify and prepare them
@@ -523,8 +527,10 @@
 	};
 
 	let observation = function() {
+		// set value to false if you need to disable IntersectionObserver and use Scroll event instead
+		let useIntersectionObserver = true;
 		// decide whether to use IntersectionObserver or window scroll event for detecting elements
-		if ('IntersectionObserver' in window) {
+		if ('IntersectionObserver' in window && useIntersectionObserver) {
 			// observe the visibility of elements in modern browsers
 			let detector = {
 				animation: function(i) {

@@ -101,6 +101,12 @@ $ npm install stickymate
 <div data-classes="25vh: {add: class1}, 50vh: {add: class2 class3, remove: class1}, 75vh: {remove: class2 class3}"></div>
 ```
 
+- Synchronize an animations of different elements (followers) to one of them (leader). It works as if the follower's vertical position pretend to be the same as the leader's vertical position (without moving physically), just like a follower is located exactly where leader is located vertically. That is, when the leader's top touches the top of the viewport, it will be `0vh` for him and for all of the followers too.
+``` html
+<div data-animation="..." id="leader"></div>
+<div data-animation="..." data-sync-with="id: leader"></div>
+```
+
 ## Animated CSS properties
 
 - You can animate any CSS property whose value contains just numbers or numbers in `%`, `px`, `vw`, `vh`, `em`, `rem`, `deg`.

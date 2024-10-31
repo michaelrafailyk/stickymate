@@ -17,9 +17,9 @@ Stickymate is a tool that designed to help web developers easily create animatio
 ```
 - Set parameters for attributes.
 ``` html
-<div data-sticky="from: 0, duration: 100vh" data-animation="opacity: {0: 1, 100vh: 0}" data-classes="0vh: {add: class1}" data-sync-with="id: syncwithme"></div>
+<div data-sticky="from: 0, duration: 100vh" data-animation="opacity: {0: 1, 100vh: 0}" data-classes="0vh: {add: class1}" data-sync-with="id: elementid"></div>
 ```
-- Set parameters by the following scheme.
+- Here's an explanation of a keys and values.
 ``` html
 <div
     data-sticky="
@@ -39,10 +39,10 @@ Stickymate is a tool that designed to help web developers easily create animatio
             add: classname classname,    // class names (one or more separated by a space) to be added
             remove: classname classname  // class names (one or more separated by a space) to be removed
         },
-        position: {...}.                 // optional
+        position: {...}.                 // optional, another position do add or remove classes
     "
     data-sync-with="
-        id: value              // id of the element to synchronize animation with
+        id: value              // here replace value with id of the element to synchronize animation with
     "
 ></div>
 ```

@@ -5,7 +5,6 @@
 	Copyright 2021-2024 Michael Rafailyk
 	rafailyk@icloud.com
 	https://github.com/michaelrafailyk/stickymate
-	https://www.npmjs.com/package/stickymate
 
 */
 

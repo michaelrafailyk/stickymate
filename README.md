@@ -17,7 +17,7 @@ Stickymate is a tool that designed to help web developers easily create animatio
 ```
 - Set parameters for attributes.
 ``` html
-<div data-sticky="from: 0, duration: 100vh" data-animation="opacity: {0: 1, 100vh: 0}" data-classes="0vh: {add: class1}"></div>
+<div data-sticky="from: 0, duration: 100vh" data-animation="opacity: {0: 1, 100vh: 0}" data-classes="0vh: {add: class2, remove: class1}"></div>
 ```
 - Here's an explanation of a keys and values.
 ``` html

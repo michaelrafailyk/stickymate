@@ -47,7 +47,7 @@ Stickymate is a tool that designed to help web developers easily create animatio
 ></div>
 ```
 - The `data-sticky` attribute can contain only two params, namely `from` and `duration`.
-- If there is no need to extends height of the parent container, you can specify `0` for the `duration` value.
+- If you specify `duration` of `data-sticky` element greater than `0`, the parent container will be automatically extended vertically to the specified height.
 - The `data-classes` attribute can contain `add` and `remove` keys separately or together.
 - The `add` and `remove` keys of the `data-classes` attribute can contain one classname or several, separated by spaces.
 - The `data-animation` attribute can contain one or more animated CSS properties, separated by commas.

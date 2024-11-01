@@ -11,13 +11,13 @@ Stickymate is a tool that designed to help web developers easily create animatio
 
 ## Usage
 
-- Add a `data-sticky`, `data-animation`, `data-classes`, `data-sync-with` attributes to your element apart or together.
+- Add a `data-sticky`, `data-animation`, `data-classes` attributes to your element apart or together.
 ``` html
-<div data-sticky="..." data-animation="..." data-classes="..." data-sync-with="..."></div>
+<div data-sticky="..." data-animation="..." data-classes="..."></div>
 ```
 - Set parameters for attributes.
 ``` html
-<div data-sticky="from: 0, duration: 100vh" data-animation="opacity: {0: 1, 100vh: 0}" data-classes="0vh: {add: class1}" data-sync-with="id: elementid"></div>
+<div data-sticky="from: 0, duration: 100vh" data-animation="opacity: {0: 1, 100vh: 0}" data-classes="0vh: {add: class1}"></div>
 ```
 - Here's an explanation of a keys and values.
 ``` html
@@ -42,7 +42,7 @@ Stickymate is a tool that designed to help web developers easily create animatio
         position: {...}.                 // optional, another position do add or remove classes
     "
     data-sync-with="
-        id: value              // here replace value with id of the element to synchronize animation with
+        id: value              // value is an id of the element to synchronize animation with
     "
 ></div>
 ```

@@ -85,12 +85,12 @@
 		<div>
 			<div class="fullwindow perspective light" data-sticky="from: top, duration: 200vh">
 				<div class="fullwindow absolute dark" data-animation="
-					opacity: {110vh: 1, 125vh: 0},
+					opacity: {120vh: 1, 150vh: 0},
 					transform: {
 						50vh: translate3d(0, 0, 0) rotateX(0),
 						75vh: translate3d(0, 0, -50vh) rotateX(0),
 						100vh: translate3d(0, 0, -100vh) rotateX(70deg),
-						125vh: translate3d(0, 30vh, -100vh) rotateX(70deg)
+						150vh: translate3d(0, 30vh, -100vh) rotateX(70deg)
 					}
 				">
 					<div class="fullwindow absolute" data-animation="opacity: {0: 1, 25vh: 0}">
@@ -101,10 +101,10 @@
 					</div>
 				</div>
 				<div class="fullwindow absolute dark" data-animation="
-					opacity: {100vh: 0, 110vh: 0.5, 125vh: 1},
+					opacity: {100vh: 0, 130vh: 1},
 					transform: {
 						100vh: translate3d(0, -25vh, -100vh) rotateX(70deg),
-						125vh: translate3d(0, 30vh, -100vh) rotateX(70deg),
+						150vh: translate3d(0, 30vh, -100vh) rotateX(70deg),
 						175vh: translate3d(0, 0, -50vh) rotateX(0),
 						200vh: translate3d(0, 0, 0) rotateX(0)
 					}
@@ -257,9 +257,10 @@
 				25vh: {add: hl2, remove: hl1},
 				50vh: {add: hl3, remove: hl2},
 				75vh: {add: hl4, remove: hl3},
-				100vh: {add: hl5 hl7, remove: hl4},
-				110vh: {add: hl6},
-				125vh: {add: hl8, remove: hl5 hl6 hl7},
+				100vh: {add: hl5 hl7 hl10, remove: hl4},
+				120vh: {add: hl6},
+				130vh: {remove: hl10},
+				150vh: {add: hl8, remove: hl5 hl6 hl7},
 				175vh: {add: hl9, remove: hl8},
 				200vh: {remove: hl0 hl9}
 			">
@@ -268,12 +269,12 @@
 				</div>
 				<div class="markup-attribute">
 					<div><pre>·   </pre><c1>data-animation</c1>="</div>
-					<div><pre>        </pre><c2>opacity</c2>: {<c3 class="bl6">110vh</c3>: <c4>1</c4>, <c3 class="bl6">125vh</c3>: <c4>0</c4>},</div>
+					<div><pre>        </pre><c2>opacity</c2>: {<c3 class="bl6">120vh</c3>: <c4>1</c4>, <c3 class="bl6">150vh</c3>: <c4>0</c4>},</div>
 					<div><pre>        </pre><c2>transform</c2>: {</div>
 					<div><pre>            </pre><c3 class="bl3">50vh</c3>:<pre>  </pre><c4>translate3d(0, 0, 0) rotateX(0)</c4>,</div>
 					<div><pre>            </pre><c3 class="bl3 bl4">75vh</c3>:<pre>  </pre><c4>translate3d(0, 0, -50vh) rotateX(0)</c4>,</div>
 					<div><pre>            </pre><c3 class="bl4 bl5">100vh</c3>: <c4>translate3d(0, 0, -100vh) rotateX(70deg)</c4>,</div>
-					<div><pre>            </pre><c3 class="bl5">125vh</c3>: <c4>translate3d(0, 30vh, -100vh) rotateX(70deg)</c4></div>
+					<div><pre>            </pre><c3 class="bl5">150vh</c3>: <c4>translate3d(0, 30vh, -100vh) rotateX(70deg)</c4></div>
 					<div><pre>        </pre>}</div>
 					<div><pre>    "</pre></div>
 				</div>
@@ -283,10 +284,10 @@
 				</div>
 				<div class="markup-attribute">
 					<div><pre>·   </pre><c1>data-animation</c1>="</div>
-					<div><pre>        </pre><c2>opacity</c2>: {<c3 class="bl7">100vh</c3>: <c4>0</c4>, <c3 class="bl7">125vh</c3>: <c4>1</c4>},</div>
+					<div><pre>        </pre><c2>opacity</c2>: {<c3 class="bl10">100vh</c3>: <c4>0</c4>, <c3 class="bl10">130vh</c3>: <c4>1</c4>},</div>
 					<div><pre>        </pre><c2>transform</c2>: {</div>
 					<div><pre>            </pre><c3 class="bl7">100vh</c3>: <c4>translate3d(0, -25vh, -100vh) rotateX(70deg)</c4>,</div>
-					<div><pre>            </pre><c3 class="bl7 bl8">125vh</c3>: <c4>translate3d(0, 30vh, -100vh) rotateX(70deg)</c4>,</div>
+					<div><pre>            </pre><c3 class="bl7 bl8">150vh</c3>: <c4>translate3d(0, 30vh, -100vh) rotateX(70deg)</c4>,</div>
 					<div><pre>            </pre><c3 class="bl8 bl9">175vh</c3>: <c4>translate3d(0, 0, -50vh) rotateX(0)</c4>,</div>
 					<div><pre>            </pre><c3 class="bl9">200vh</c3>: <c4>translate3d(0, 0, 0) rotateX(0)</c4></div>
 					<div><pre>        </pre>}</div>

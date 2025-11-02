@@ -1,4 +1,6 @@
-Stickymate is a tool that designed to help web developers easily create animations without JavaScript knowledge, just setting animation params directly in the HTML markup. Stickymate combines extended sticky positioning and scroll-based animation features, so it can catch an element on the screen and animate it while the user scrolls the page. It is also possible to add and remove classes to control animation from CSS. And one more thing, you can synchronize an animations of different elements to the vertical position of one of them.
+# Stickymate
+
+A tool that designed to help web developers easily create animations without JavaScript knowledge, just setting animation params directly in the HTML markup. Stickymate combines extended sticky positioning and scroll-based animation features, so it can catch an element on the screen and animate it while the user scrolls the page. It is also possible to add and remove classes to control animation from CSS. And one more thing, you can synchronize an animations of different elements to the vertical position of one of them.
 
 ## Demo
 
@@ -161,3 +163,9 @@ All modern browsers that support ECMAScript 6
 ## Author and license
 
 **Michael Rafailyk** - [michaelrafailyk](https://github.com/michaelrafailyk) on GitHub. Project is licensed under the MIT License - see the [LICENSE.md](./LICENSE) file for details.
+
+## Donate
+
+This tool is free to use. If it saves you time or makes your work easier, consider supporting my work:
+
+[Ko-fi](https://ko-fi.com/michaelrafailyk), [PayPal](https://www.paypal.com/donate/?hosted_button_id=NF99TTG7WLHZS)

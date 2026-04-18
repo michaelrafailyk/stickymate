@@ -1,6 +1,6 @@
 /*
 
-	stickymate v1.4.0
+	stickymate v1.4.1
 	Licensed under the MIT License
 	Copyright 2021-2024 Michael Rafailyk
 	rafailyk@icloud.com
@@ -15,7 +15,7 @@
 		attribute: 'data-sticky',
 		elements: false,
 		container: 'sticky-container',
-		property: 'position: -webkit-sticky; position: sticky;',
+		property: 'position: sticky;',
 		// check if browser support position: sticky
 		supported: function() {
 			let element = document.createElement('div');
@@ -292,9 +292,6 @@
 			}
 			// apply changes to an element
 			window.requestAnimationFrame(function() {
-				if (property != 'opacity') {
-					element['element'].style['-webkit-' + property] = value;
-				}
 				element['element'].style[property] = value;
 			});
 		}

@@ -24,7 +24,6 @@ span {
 	position: absolute !important;
 }
 .perspective {
-	-webkit-perspective: 150vh;
 	perspective: 150vh;
 }
 .dark {
@@ -41,7 +40,6 @@ p {
 	margin: 0 15%;
 	width: 70%;
 	top: 50%;
-	-webkit-transform: translate(0, -50%);
 	transform: translate(0, -50%);
 	font: 2rem sans-serif;
 	text-align: center;
@@ -117,7 +115,6 @@ c4 {
 	border-radius: 5px;
 	background: #2B2B2B;
 	color: #FFC66D;
-	-webkit-transition: background-color .2s ease, color .2s ease;
 	transition: background-color .2s ease, color .2s ease;
 }
 .hl0 .bl0,
